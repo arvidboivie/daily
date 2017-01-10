@@ -8,6 +8,9 @@ $clientSecret = '***REMOVED***';
 
 $ch = curl_init();
 
+if (FALSE === $ch)
+    throw new Exception('failed to initialize');
+
 $curlConfig = [
     CURLOP_URL => $curlUrl,
     CURLOPT_POST => true,
