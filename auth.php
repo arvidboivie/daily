@@ -22,4 +22,6 @@ $result = curl_exec($ch);
 
 curl_close($ch);
 
+var_dump(curl_errno());
+var_dump(curl_error());
 var_dump($result);
