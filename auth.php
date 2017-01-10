@@ -45,9 +45,6 @@ $curlConfig = [
 ];
 
 $result = curl_exec($ch);
-$info = curl_getinfo($ch);
-
-print_r($info);
 
 curl_close($ch);
 
