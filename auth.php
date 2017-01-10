@@ -18,7 +18,10 @@ $curlConfig = [
     CURLOPT_URL => $authUrl,
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => [ 'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret) ],
+    CURLOPT_HTTPHEADER => [
+        'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret),
+        "'Content-Type':'application/x-www-form-urlencoded'",
+    ],
     CURLOPT_POSTFIELDS => [ 'grant_type' => 'client_credentials' ],
 ];
 
@@ -26,8 +29,6 @@ curl_setopt_array($ch, $curlConfig);
 
 $result = curl_exec($ch);
 
-var_dump(curl_errno($ch));
-var_dump(curl_error($ch));
 var_dump($result);
 
 curl_close($ch);
