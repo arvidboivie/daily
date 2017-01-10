@@ -37,7 +37,7 @@ $accessToken = $result->access_token;
 $ch = curl_init();
 
 $curlConfig = [
-    CURLOPT_URL => $baseUrl . 'users/arvid.b/playlists',
+    CURLOPT_URL => $baseUrl . 'users/arvid.b/playlists/37i9dQZEVXcSOL2kumAWQZ',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
         'Authorization: Basic ' . $accessToken,
