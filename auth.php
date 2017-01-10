@@ -28,6 +28,6 @@ $result = curl_exec($ch);
 
 curl_close($ch);
 
-var_dump(curl_errno());
-var_dump(curl_error());
+var_dump(curl_errno($ch));
+var_dump(curl_error($ch));
 var_dump($result);
