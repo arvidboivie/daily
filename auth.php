@@ -44,6 +44,8 @@ $curlConfig = [
     ],
 ];
 
+curl_setopt_array($ch, $curlConfig);
+
 $result = curl_exec($ch);
 
 curl_close($ch);
