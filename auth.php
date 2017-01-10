@@ -22,7 +22,7 @@ $curlConfig = [
         'Authorization' => 'Basic ' . base64_encode($clientId.':'.$clientSecret),
     ],
     CURLOPT_POSTFIELDS => [ 'grant_type' => 'client_credentials' ],
-    CURLOPT_HEADER_OUT => true,
+    CURLINFO_HEADER_OUT => true,
 ];
 
 echo base64_encode($clientId.':'.$clientSecret);
@@ -32,6 +32,8 @@ curl_setopt_array($ch, $curlConfig);
 $result = curl_exec($ch);
 
 $info = curl_getinfo($ch);
+
+print_r($info);
 
 // var_dump($result);
 
