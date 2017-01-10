@@ -11,9 +11,6 @@ $clientSecret = '***REMOVED***';
 
 $ch = curl_init();
 
-if (FALSE === $ch)
-    throw new Exception('failed to initialize');
-
 $curlConfig = [
     CURLOPT_URL => $authUrl,
     CURLOPT_POST => true,
@@ -31,10 +28,6 @@ curl_setopt_array($ch, $curlConfig);
 
 $result = curl_exec($ch);
 
-$info = curl_getinfo($ch);
-
-print_r($info);
-
-// var_dump($result);
+var_dump($result);
 
 curl_close($ch);
