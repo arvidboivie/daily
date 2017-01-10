@@ -21,7 +21,7 @@ $curlConfig = [
     CURLOPT_HTTPHEADER => [
         'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret),
     ],
-    CURLOPT_POSTFIELDS => [ 'grant_type' => 'client_credentials' ],
+    CURLOPT_POSTFIELDS => 'grant_type=client_credentials',
     CURLINFO_HEADER_OUT => true,
 ];
 
