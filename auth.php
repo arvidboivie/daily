@@ -54,4 +54,4 @@ print_r($info);
 
 curl_close($ch);
 
-var_dump($result);
+// var_dump($result);
