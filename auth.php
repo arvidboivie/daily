@@ -32,7 +32,7 @@ curl_close($ch);
 
 $result = json_decode($result);
 
-$accessToken = $result['access_token'];
+$accessToken = $result->access_token;
 
 $ch = curl_init();
 
