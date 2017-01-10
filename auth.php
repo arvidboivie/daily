@@ -37,15 +37,12 @@ $accessToken = $result->access_token;
 $ch = curl_init();
 
 $curlConfig = [
-    CURLOPT_URL => $authUrl . 'users/arvid.b/playlists',
+    CURLOPT_URL => $baseUrl . 'users/arvid.b/playlists',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
         'Authorization: Basic ' . $accessToken,
     ],
-    CURLINFO_HEADER_OUT => true,
 ];
-
-curl_setopt_array($ch, $curlConfig);
 
 $result = curl_exec($ch);
 $info = curl_getinfo($ch);
@@ -54,4 +51,4 @@ print_r($info);
 
 curl_close($ch);
 
-// var_dump($result);
+var_dump($result);
