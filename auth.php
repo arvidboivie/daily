@@ -42,11 +42,16 @@ $curlConfig = [
     CURLOPT_HTTPHEADER => [
         'Authorization: Basic ' . $accessToken,
     ],
+    CURLINFO_HEADER_OUT => true,
 ];
 
 curl_setopt_array($ch, $curlConfig);
 
 $result = curl_exec($ch);
+$info = curl_getinfo($ch);
+
+print_r($info);
+
 curl_close($ch);
 
 var_dump($result);
