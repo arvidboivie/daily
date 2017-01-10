@@ -25,6 +25,8 @@ $curlConfig = [
     CURLOPT_POSTFIELDS => [ 'grant_type' => 'client_credentials' ],
 ];
 
+echo base64_encode($clientId.':'.$clientSecret);
+
 curl_setopt_array($ch, $curlConfig);
 
 $result = curl_exec($ch);
