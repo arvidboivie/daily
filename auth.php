@@ -15,7 +15,7 @@ if (FALSE === $ch)
     throw new Exception('failed to initialize');
 
 $curlConfig = [
-    CURLOP_URL => $curlUrl,
+    CURLOPT_URL => $authUrl,
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [ 'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret) ],
