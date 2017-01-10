@@ -20,9 +20,8 @@ $curlConfig = [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
         'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret),
-        "'Content-Type':'application/x-www-form-urlencoded'",
     ],
-    CURLOPT_POSTFIELDS => [ 'grant_type' => 'client_credentials' ],
+    CURLOPT_POSTFIELDS => [ 'grant_type=client_credentials' ],
 ];
 
 echo base64_encode($clientId.':'.$clientSecret);
