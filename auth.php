@@ -3,51 +3,22 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$baseUrl = 'https://api.spotify.com/v1/';
-
-// TODO: Get authenticated
-$authUrl = 'https://accounts.spotify.com/api/token';
+require 'vendor/autoload.php';
 
 $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
-$accessToken = null;
+$redirect_uri = 'https://www.arvidboivie.se/daily-double/spotify.php';
 
-$ch = curl_init();
+$session = new SpotifyWebAPI\Session($clientId, $clientSecret, $redirect_uri);
 
-$curlConfig = [
-    CURLOPT_URL => $authUrl,
-    CURLOPT_POST => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => [
-        'Authorization: Basic ' . base64_encode($clientId.':'.$clientSecret),
-    ],
-    CURLOPT_POSTFIELDS => 'grant_type=client_credentials',
-    CURLINFO_HEADER_OUT => true,
-];
+$scopes = array(
+    'playlist-read-private',
+    'playlist-read-collaborative',
+);
 
-curl_setopt_array($ch, $curlConfig);
+$authorizeUrl = $session->getAuthorizeUrl(array(
+    'scope' => $scopes
+));
 
-$result = curl_exec($ch);
-curl_close($ch);
-
-$result = json_decode($result);
-
-$accessToken = $result->access_token;
-
-$ch = curl_init();
-
-$curlConfig = [
-    CURLOPT_URL => $baseUrl . 'users/arvid.b/playlists/37i9dQZEVXcSOL2kumAWQZ',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => [
-        'Authorization: Basic ' . $accessToken,
-    ],
-];
-
-curl_setopt_array($ch, $curlConfig);
-
-$result = curl_exec($ch);
-
-curl_close($ch);
-
-var_dump($result);
+header('Location: ' . $authorizeUrl);
+die();

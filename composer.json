@@ -1,0 +1,14 @@
+{
+    "name": "boivie/daily-double",
+    "description": "Checks for duplicates in my daily spotify lists",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Arvid Boivie",
+            "email": "arvid.boivie@gmail.com"
+        }
+    ],
+    "require": {
+        "jwilsson/spotify-web-api-php": "^1.0.0"
+    }
+}
