@@ -48,7 +48,7 @@ $results = array_filter($songs, function($songObject) use ($searchTerm) {
 });
 
 foreach ($results as $result) {
-    echo $result->name.' - '.$result->album->name.'<br>';
+    echo $result->track->name.' - '.$result->track->album->name.'<br>';
 }
 
 // TODO: Get all daily playlists
