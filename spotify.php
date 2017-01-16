@@ -6,6 +6,8 @@ $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
 $redirect_uri = 'https://www.arvidboivie.se/daily-double/spotify.php';
 
+$userId = 'arvid.b';
+
 $session = new SpotifyWebAPI\Session($clientId, $clientSecret, $redirect_uri);
 $api = new SpotifyWebAPI\SpotifyWebAPI();
 
@@ -17,7 +19,7 @@ $accessToken = $session->getAccessToken();
 $api->setAccessToken($accessToken);
 
 // Start using the API!
-$playlists = $api->getUserPlaylists('arvid.b', ['limit' => 50]);
+$playlists = $api->getUserPlaylists($userId, ['limit' => 50]);
 
 $playlists = array_filter($playlists->items, function($list) {
     if (preg_match('/Dagens Låt \d{2}/', $list->name) === 1) {
@@ -25,9 +27,15 @@ $playlists = array_filter($playlists->items, function($list) {
     }
 });
 
+$searchTerm = 'get';
+
+$songs = [];
+
 foreach ($playlists as $list) {
-    echo $list->name.'<br>';
+    $songs[] = $api->getUserPlaylistTracks($userId, $list->id)->items;
 }
+
+echo count($songs);
 
 // TODO: Get all daily playlists
 $playlistUrl = $baseUrl + 'users/arvid.b/playlists';
