@@ -19,9 +19,10 @@ $api->setAccessToken($accessToken);
 // Start using the API!
 $playlists = $api->getUserPlaylists('arvid.b', ['limit' => 50]);
 
-foreach ($playlists->items as $playlist) {
-    echo $playlist->name.'<br>';
-}
+$searchList = $api->search('Dagens+Låt+**+', 'playlist');
+
+header('Content-Type: application/json');
+print_r($searchList);
 
 // TODO: Get all daily playlists
 $playlistUrl = $baseUrl + 'users/arvid.b/playlists';
