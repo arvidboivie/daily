@@ -25,8 +25,9 @@ $playlists = array_filter($playlists->items, function($list) {
     }
 });
 
-header('Content-Type: application/json');
-print_r($playlists);
+foreach ($playlists as $list) {
+    echo $list->name.'<br>';
+}
 
 // TODO: Get all daily playlists
 $playlistUrl = $baseUrl + 'users/arvid.b/playlists';
