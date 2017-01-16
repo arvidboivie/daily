@@ -19,6 +19,12 @@ $api->setAccessToken($accessToken);
 // Start using the API!
 $playlists = $api->getUserPlaylists('arvid.b', ['limit' => 50]);
 
+$playlists = array_filter($playlists->items, function($list) {
+    if (preg_match('/Dagens Låt \d{2}/', $list->name) === true) {
+        return true;
+    }
+});
+
 header('Content-Type: application/json');
 print_r($playlists);
 
