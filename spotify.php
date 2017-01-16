@@ -17,8 +17,9 @@ $accessToken = $session->getAccessToken();
 $api->setAccessToken($accessToken);
 
 // Start using the API!
-$playlists = $api->getUserPlaylists('arvid.b');
+$playlists = $api->getUserPlaylists('arvid.b', ['limit' => 50]);
 
+header('Content-Type: application/json');
 print_r($playlists);
 
 // TODO: Get all daily playlists
