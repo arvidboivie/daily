@@ -38,7 +38,7 @@ foreach ($playlists as $list) {
     $songs = array_merge($songs, $api->getUserPlaylistTracks($list->owner->id, $list->id)->items);
 }
 
-$results = array_filter($songs, function($song) {
+$results = array_filter($songs, function($song) use ($searchTerm) {
     if (preg_match('/'.$searchTerm.'/', $song->name) === 1) {
         return true;
     }
