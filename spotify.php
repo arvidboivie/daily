@@ -38,7 +38,18 @@ foreach ($playlists as $list) {
     $songs = array_merge($songs, $api->getUserPlaylistTracks($list->owner->id, $list->id)->items);
 }
 
-echo count($songs);
+$results = array_filter($songs, function($song) {
+    if (preg_match('/'.$searchTerm.'/', $song->name) === 1) {
+        return true;
+    }
+    if (preg_match('/'.$searchTerm.'/', $song->album->name) === 1) {
+        return true;
+    }
+});
+
+foreach ($results as $result) {
+    echo $result->name.' - '.$result->album->name.'<br>';
+}
 
 // TODO: Get all daily playlists
 // $playlistUrl = $baseUrl . 'users/arvid.b/playlists';
