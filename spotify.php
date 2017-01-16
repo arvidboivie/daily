@@ -19,7 +19,7 @@ $api->setAccessToken($accessToken);
 // Start using the API!
 $playlists = $api->getUserPlaylists('arvid.b', ['limit' => 50]);
 
-$searchList = $api->search('Dagens+Låt+**+', 'playlist');
+$searchList = $api->search('Dagens+Låt', 'playlist');
 
 header('Content-Type: application/json');
 print_r($searchList);
