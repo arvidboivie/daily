@@ -35,14 +35,13 @@ $searchTerm = 'get';
 $songs = [];
 
 foreach ($playlists as $list) {
-    echo $list->id.'<br>';
-    // $songs[] = $api->getUserPlaylistTracks($userId, $list->id)->items;
+    $songs[] = $api->getUserPlaylistTracks($list->user->id, $list->id)->items;
 }
 
 echo count($songs);
 
 // TODO: Get all daily playlists
-$playlistUrl = $baseUrl + 'users/arvid.b/playlists';
+// $playlistUrl = $baseUrl . 'users/arvid.b/playlists';
 
 // TODO: Get song title
 
