@@ -35,7 +35,7 @@ $searchTerm = 'get';
 $songs = [];
 
 foreach ($playlists as $list) {
-    array_merge($songs, $api->getUserPlaylistTracks($list->owner->id, $list->id)->items);
+    $songs = array_merge($songs, $api->getUserPlaylistTracks($list->owner->id, $list->id)->items);
 }
 
 echo count($songs);
