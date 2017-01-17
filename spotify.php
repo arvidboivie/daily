@@ -33,7 +33,7 @@ $tokenStatement->execute([
     'user' => $userId,
 ]);
 
-$result = $tokenStatement->fetchAll();
+$result = $tokenStatement->fetchObject();
 
 var_dump($result);
 die();
