@@ -56,6 +56,10 @@ $tokenStatement = $pdo->prepare('INSERT INTO auth(username, access_token, refres
                                  refresh_token= :refresh_token,
                                  expires= :expires');
 
+echo "time: ".time().'<br>';
+echo "expire: ".$expiration;
+die();
+
 $tokenStatement->execute([
     'username' => $userInfo->id,
     'access_token' => $accessToken,
