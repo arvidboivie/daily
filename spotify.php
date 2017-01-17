@@ -7,11 +7,10 @@ require 'vendor/autoload.php';
 
 $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
-$redirect_uri = 'https://www.arvidboivie.se/daily-double/spotify.php';
 
 $userId = 'arvid.b';
 
-$session = new SpotifyWebAPI\Session($clientId, $clientSecret, $redirect_uri);
+$session = new SpotifyWebAPI\Session($clientId, $clientSecret);
 $api = new SpotifyWebAPI\SpotifyWebAPI();
 
 // Store access and refresh token
@@ -52,6 +51,8 @@ $playlists = array_filter($playlists->items, function($list) {
         return true;
     }
 });
+
+
 
 $searchTerm = $_GET['search'];
 
