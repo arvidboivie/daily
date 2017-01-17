@@ -31,7 +31,8 @@ $accessToken = $session->getAccessToken();
 $refreshToken = $session->getRefreshToken();
 $expiration = $session->getTokenExpiration();
 
-// Set the access token on the API wrapper
+// Create API wrapper and set access token
+$api = new SpotifyWebAPI\SpotifyWebAPI();
 $api->setAccessToken($accessToken);
 
 // Start using the API!
