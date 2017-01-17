@@ -36,6 +36,8 @@ $result = $tokenStatement->fetchObject();
 $accessToken = $result->access_token;
 
 if (time() > $result->expires) {
+    echo "dead";
+    die();
     $session->refreshAccessToken($result->refresh_token);
     $accessToken->getAccessToken();
 }
