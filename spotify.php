@@ -33,9 +33,6 @@ $tokenStatement->execute();
 
 $result = $tokenStatement->fetchObject();
 
-var_dump($result);
-die();
-
 $accessToken = $result->access_token;
 
 if (time() > $result->expires) {
