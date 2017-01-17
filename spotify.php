@@ -25,15 +25,15 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 $pdo = new \PDO($dsn, $user, $password);
 
-$tokenStatement = $pdo->prepare('SELECT access_token, refresh_token, expires
+$tokenStatement = $pdo->prepare("SELECT access_token, refresh_token, expires
                                  FROM `auth`
-                                 WHERE username = `:user`');
+                                 WHERE username = ':user'");
 
 $tokenStatement->execute([
     'user' => $userId,
 ]);
 
-$result = $tokenStatement->fetchObject();
+$result = $tokenStatement->fetchAll();
 
 var_dump($result);
 die();
