@@ -31,7 +31,7 @@ $tokenStatement = $pdo->prepare('SELECT access_token, refresh_token, expires
 
 $tokenStatement->execute();
 
-$result = $recipeStatement->fetchObject();
+$result = $tokenStatement->fetchObject();
 
 $accessToken = $result->access_token;
 
