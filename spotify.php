@@ -53,7 +53,7 @@ $playlists = array_filter($playlists->items, function($list) {
     }
 });
 
-$searchTerm = 'get';
+$searchTerm = $_GET['search'];
 
 $songs = [];
 
