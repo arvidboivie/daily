@@ -52,7 +52,7 @@ $pdo = new \PDO($dsn, $user, $password);
 $tokenStatement = $pdo->prepare('INSERT INTO auth(username, access_token, refresh_token, expires)
                                  VALUES(:username, :access_token, :refresh_token, :expires)
                                  ON DUPLICATE KEY UPDATE
-                                 access_token= :username,
+                                 access_token= :access_token,
                                  refresh_token= :refresh_token,
                                  expires= :expires');
 
