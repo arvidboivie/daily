@@ -27,11 +27,9 @@ $pdo = new \PDO($dsn, $user, $password);
 
 $tokenStatement = $pdo->prepare("SELECT access_token, refresh_token, expires
                                  FROM `auth`
-                                 WHERE username = ':user'");
+                                 WHERE username = 'arvid.b'");
 
-$tokenStatement->execute([
-    'user' => $userId,
-]);
+$tokenStatement->execute();
 
 $result = $tokenStatement->fetchObject();
 
