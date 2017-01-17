@@ -7,18 +7,55 @@ require 'vendor/autoload.php';
 
 $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
-$redirect_uri = 'https://www.arvidboivie.se/daily-double/spotify.php';
+$redirect_uri = '***REMOVED***';
 
 $session = new SpotifyWebAPI\Session($clientId, $clientSecret, $redirect_uri);
 
-$scopes = array(
-    'playlist-read-private',
-    'playlist-read-collaborative',
-);
+if (empty($_GET['code']) === true) {
+    $scopes = array(
+        'playlist-read-private',
+        'playlist-read-collaborative',
+    );
 
-$authorizeUrl = $session->getAuthorizeUrl(array(
-    'scope' => $scopes
-));
+    $authorizeUrl = $session->getAuthorizeUrl(array(
+        'scope' => $scopes
+    ));
 
-header('Location: ' . $authorizeUrl);
-die();
+    header('Location: ' . $authorizeUrl);
+    die();
+}
+
+// Request a access token using the code from Spotify
+$session->requestAccessToken($_GET['code']);
+$accessToken = $session->getAccessToken();
+$refreshToken = $session->getRefreshToken();
+$expiration = $session->getTokenExpiration();
+
+// Set the access token on the API wrapper
+$api->setAccessToken($accessToken);
+
+// Start using the API!
+$userInfo = $api->me();
+
+// Store access and refresh token
+$host = '***REMOVED***';
+$db = '***REMOVED***';
+$user = '***REMOVED***';
+$password = '***REMOVED***';
+$charset = 'utf8';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+$pdo = new \PDO($dsn, $user, $password);
+
+$tokenStatement = $pdo->prepare('INSERT INTO auth(username, access_token, refresh_token, expires)
+                                  VALUES(:username, :access_token, :refresh_token, :expires)');
+
+$tokenStatement->execute([
+    'username' => $userInfo->id,
+    'access_token' => $accessToken,
+    'refresh_token' => $refreshToken,
+    'expires' => time()+$expiration,
+]);
+
+echo 'Login saved';
