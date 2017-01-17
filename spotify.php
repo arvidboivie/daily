@@ -52,9 +52,7 @@ $playlists = array_filter($playlists->items, function($list) {
     }
 });
 
-
-
-$searchTerm = $_GET['search'];
+$searchTerm = empty($_GET['search']) === false ? $_GET['search'] : 'Tyskarna från Lund';
 
 $songs = [];
 
