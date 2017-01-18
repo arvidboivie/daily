@@ -56,7 +56,7 @@ $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : 'love';
 
 echo 'Search term: '.$searchTerm.'<br><br>';
 
-$songStatement = $pdo->prepare('SELECT id, name, album, added_by
+$songStatement = $pdo->prepare('SELECT tracks.id, name, album, added_by, playlists.name
                                 FROM tracks
                                 LEFT JOIN playlists ON playlists.id = tracks.playlist_id');
 
