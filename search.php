@@ -54,7 +54,7 @@ $songStatement->execute();
 
 $songs = $songStatement->fetchAll();
 
-print_r($songs);
+print_r($songs[0]);
 die();
 
 $results = array_filter($songs, function($songObject) use ($searchTerm) {
