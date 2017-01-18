@@ -54,6 +54,8 @@ $playlists = array_filter($playlists->items, function($list) {
 
 $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : 'love';
 
+echo 'Search term: '.$searchTerm.'<br><br>';
+
 $songs = [];
 
 foreach ($playlists as $list) {
