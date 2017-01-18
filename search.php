@@ -36,7 +36,7 @@ $accessToken = $result->access_token;
 
 if (time() > $result->expires) {
     $session->refreshAccessToken($result->refresh_token);
-    $accessToken->getAccessToken();
+    $accessToken = $session->getAccessToken();
 }
 
 // Set the access token on the API wrapper
