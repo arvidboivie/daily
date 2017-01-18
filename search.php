@@ -60,7 +60,9 @@ $songStatement = $pdo->prepare('SELECT id, name, album, added_by
                                 FROM tracks
                                 LEFT JOIN playlists ON playlists.id = tracks.playlist_id');
 
-$songs = $songStatement->execute()->fetchAll();
+$songStatement->execute();
+
+$songs = $songStatement->fetchAll();
 
 var_dump($songs);
 die();
