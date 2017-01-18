@@ -56,6 +56,15 @@ $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : 'love';
 
 echo 'Search term: '.$searchTerm.'<br><br>';
 
+$songStatement = $pdo->prepare('SELECT id, name, album, added_by
+                                FROM tracks
+                                LEFT JOIN playlists ON playlists.id = tracks.playlist_id');
+
+$songs = $songStatement->execute()->fetchAll();
+
+var_dump($songs);
+die();
+
 $songs = [];
 
 foreach ($playlists as $list) {
