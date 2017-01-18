@@ -63,10 +63,10 @@ foreach ($playlists as $list) {
 }
 
 $results = array_filter($songs, function($songObject) use ($searchTerm) {
-    if (preg_match('/'.$searchTerm.'/', $songObject->track->name) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject->track->name) === 1) {
         return true;
     }
-    if (preg_match('/'.$searchTerm.'/', $songObject->track->album->name) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject->track->album->name) === 1) {
         return true;
     }
 });
