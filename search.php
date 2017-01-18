@@ -42,16 +42,6 @@ if (time() > $result->expires) {
 // Set the access token on the API wrapper
 $api->setAccessToken($accessToken);
 
-// Start using the API!
-
-$playlists = $api->getUserPlaylists($userId, ['limit' => 50]);
-
-$playlists = array_filter($playlists->items, function($list) {
-    if (preg_match('/Dagens Låt \d{2}/', $list->name) === 1) {
-        return true;
-    }
-});
-
 $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : 'love';
 
 echo 'Search term: '.$searchTerm.'<br><br>';
@@ -64,26 +54,20 @@ $songStatement->execute();
 
 $songs = $songStatement->fetchAll();
 
-var_dump($songs);
+print_r($songs);
 die();
 
-$songs = [];
-
-foreach ($playlists as $list) {
-    $songs = array_merge($songs, $api->getUserPlaylistTracks($list->owner->id, $list->id)->items);
-}
-
 $results = array_filter($songs, function($songObject) use ($searchTerm) {
-    if (preg_match('/'.$searchTerm.'/i', $songObject->track->name) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject->name) === 1) {
         return true;
     }
-    if (preg_match('/'.$searchTerm.'/i', $songObject->track->album->name) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject->album) === 1) {
         return true;
     }
 });
 
 foreach ($results as $result) {
-    echo $result->track->name.' - '.$result->track->album->name.'<br>';
+    echo '"'.$result->track->name.' - '.$result->track->album->name.'" in '.$result->playlist.'<br>';
 }
 
 // TODO: Get all daily playlists
