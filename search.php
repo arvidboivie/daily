@@ -59,20 +59,17 @@ $songStatement->execute();
 
 $songs = $songStatement->fetchAll();
 
-print_r($songs[0]);
-die();
-
 $results = array_filter($songs, function($songObject) use ($searchTerm) {
-    if (preg_match('/'.$searchTerm.'/i', $songObject->name) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject['track_name']) === 1) {
         return true;
     }
-    if (preg_match('/'.$searchTerm.'/i', $songObject->album) === 1) {
+    if (preg_match('/'.$searchTerm.'/i', $songObject['album']) === 1) {
         return true;
     }
 });
 
 foreach ($results as $result) {
-    echo '"'.$result->track->name.' - '.$result->track->album->name.'" in '.$result->playlist.'<br>';
+    echo '"'.$result['track_name'].' - '.$result['album'].'" in '.$result['playlist'].'<br>';
 }
 
 // TODO: Get all daily playlists
