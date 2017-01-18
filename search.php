@@ -23,7 +23,8 @@ $songStatement = $pdo->prepare('SELECT
                                     added_by,
                                     playlists.name AS playlist_name
                                 FROM tracks
-                                LEFT JOIN playlists ON playlists.id = tracks.playlist_id');
+                                LEFT JOIN playlists ON playlists.id = tracks.playlist_id
+                                ORDER BY playlist_name');
 
 $songStatement->execute();
 
