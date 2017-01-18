@@ -51,7 +51,7 @@ $songStatement = $pdo->prepare('SELECT
                                     tracks.name AS track_name,
                                     album,
                                     added_by,
-                                    playlists.name AS playlist_name,
+                                    playlists.name AS playlist_name
                                 FROM tracks
                                 LEFT JOIN playlists ON playlists.id = tracks.playlist_id');
 
