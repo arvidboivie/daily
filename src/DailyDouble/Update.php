@@ -68,5 +68,7 @@ class Update
                 ]);
             }
         }
+
+        return true;
     }
 }

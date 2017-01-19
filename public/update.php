@@ -17,6 +17,11 @@ $api = new Api($clientId, $clientSecret, $redirectURI)->getApiWrapper();
 
 $update = new Update($api);
 
-$update->updatePlaylists();
+$status = $update->updatePlaylists();
+
+if ($status !== true) {
+    echo 'Something went wrong';
+    die();
+}
 
 echo 'Playlists updated';
