@@ -19,7 +19,7 @@ $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : false;
 
 if ($searchTerm === false) {
     echo "Please enter a search term in the query string: <br>".
-         "..search.php?search=<search term>";
+         "..search.php?search='search term'";
     die();
 }
 
