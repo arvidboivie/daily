@@ -2,6 +2,9 @@
 
 namespace Boivie\Spotify;
 
+use SpotifyWebAPI\Session;
+use SpotifyWebAPI\SpotifyWebAPI;
+
 class Api {
 
     protected $clientId;
@@ -17,7 +20,7 @@ class Api {
 
     public function getAuthorizeUrl(array $scopes)
     {
-        $session = new SpotifyWebAPI\Session(
+        $session = new Session(
             $this->clientId,
             $this->clientSecret,
             $this->redirectURI
@@ -37,7 +40,7 @@ class Api {
 
     public function getAccessToken($code) {
 
-        $session = new SpotifyWebAPI\Session(
+        $session = new Session(
             $this->clientId,
             $this->clientSecret,
             $this->redirectURI
@@ -50,7 +53,7 @@ class Api {
         $expiration = $session->getTokenExpiration();
 
         // Create API wrapper and set access token
-        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $api = new SpotifyWebAPI();
         $api->setAccessToken($accessToken);
 
         // Start using the API!
