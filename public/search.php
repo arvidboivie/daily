@@ -13,8 +13,6 @@ $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
 $redirectURI = '***REMOVED***';
 
-$api = new Api($clientId, $clientSecret, $redirectURI);
-
 $searchTerm = empty($_GET['search']) === false ? $_GET['search'] : false;
 
 if ($searchTerm === false) {
@@ -22,6 +20,8 @@ if ($searchTerm === false) {
          "..search.php?search='search term'";
     die();
 }
+
+$api = new Api($clientId, $clientSecret, $redirectURI)->getApiWrapper();
 
 $search = new Search($api);
 
