@@ -15,9 +15,13 @@ $api = new Api($clientId, $clientSecret, $redirectURI);
 
 if (empty($_GET['code']) === true) {
 
-    $authorizeUrl = $api->getAuthorizeUrl();
+    $authorizeUrl = $api->getAuthorizeUrl([
+        'playlist-read-private',
+        'playlist-read-collaborative',
+    ]);
 
     header('Location: ' . $authorizeUrl);
     die();
 }
- ?>
+
+$api->getAccessToken($_GET['code']);
