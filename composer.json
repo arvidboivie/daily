@@ -12,6 +12,9 @@
         "jwilsson/spotify-web-api-php": "^1.0.0"
     },
     "autoload": {
-        "psr-4": {"": "src/"}
+        "psr-4": {
+            "Boivie\\Spotify\\": "src/Spotify",
+            "Boivie\\DailyDouble\\": "src/DailyDouble"
+        }
     }
 }

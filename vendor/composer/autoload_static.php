@@ -11,6 +11,11 @@ class ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89
         array (
             'SpotifyWebAPI\\' => 14,
         ),
+        'B' => 
+        array (
+            'Boivie\\Spotify\\' => 15,
+            'Boivie\\DailyDouble\\' => 19,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,10 +23,14 @@ class ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89
         array (
             0 => __DIR__ . '/..' . '/jwilsson/spotify-web-api-php/src',
         ),
-    );
-
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/../..' . '/src',
+        'Boivie\\Spotify\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Spotify',
+        ),
+        'Boivie\\DailyDouble\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/DailyDouble',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -29,7 +38,6 @@ class ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89::$fallbackDirsPsr4;
 
         }, null, ClassLoader::class);
     }

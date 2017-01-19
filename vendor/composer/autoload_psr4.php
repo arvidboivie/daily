@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'SpotifyWebAPI\\' => array($vendorDir . '/jwilsson/spotify-web-api-php/src'),
-    '' => array($baseDir . '/src'),
+    'Boivie\\Spotify\\' => array($baseDir . '/src/Spotify'),
+    'Boivie\\DailyDouble\\' => array($baseDir . '/src/DailyDouble'),
 );
