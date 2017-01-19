@@ -11,12 +11,20 @@ class ComposerStaticInit0936dc717734ac98c8c5c46d1d585d89
         array (
             'SpotifyWebAPI\\' => 14,
         ),
+        'B' => 
+        array (
+            'Boivie\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'SpotifyWebAPI\\' => 
         array (
             0 => __DIR__ . '/..' . '/jwilsson/spotify-web-api-php/src',
+        ),
+        'Boivie\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
