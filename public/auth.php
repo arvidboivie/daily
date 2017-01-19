@@ -25,3 +25,5 @@ if (empty($_GET['code']) === true) {
 }
 
 $api->getAccessToken($_GET['code']);
+
+echo "Auth successful";
