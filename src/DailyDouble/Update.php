@@ -2,13 +2,13 @@
 
 namespace Boivie\DailyDouble;
 
-use Boivie\Spotify\Api;
+use SpotifyWebAPI\SpotifyWebAPI;
 
 class Update
 {
     protected $api;
 
-    public function __construct(Api $api)
+    public function __construct(SpotifyWebAPI $api)
     {
         $this->api = $api;
     }

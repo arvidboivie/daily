@@ -2,14 +2,14 @@
 
 namespace Boivie\DailyDouble;
 
-use Boivie\Spotify\Api;
+use SpotifyWebAPI\SpotifyWebAPI;
 
 class Search
 {
 
     protected $api;
 
-    public function __construct($api)
+    public function __construct(SpotifyWebAPI $api)
     {
         $this->api = $api;
     }
