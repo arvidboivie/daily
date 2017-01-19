@@ -26,11 +26,6 @@ class Api {
             $this->redirectURI
         );
 
-        $scopes = array(
-            'playlist-read-private',
-            'playlist-read-collaborative',
-        );
-
         $authorizeUrl = $session->getAuthorizeUrl(array(
             'scope' => $scopes
         ));
@@ -38,8 +33,8 @@ class Api {
         return $authorizeUrl;
     }
 
-    public function getAccessToken($code) {
-
+    public function getAccessToken($code)
+    {
         $session = new Session(
             $this->clientId,
             $this->clientSecret,
@@ -83,5 +78,42 @@ class Api {
             'refresh_token' => $refreshToken,
             'expires' => $expiration,
         ]);
+    }
+
+    public function getApiWrapper()
+    {
+        $session = new Session($this->clientId, $this->clientSecret);
+        $api = new SpotifyWebAPI();
+
+        $host = '***REMOVED***';
+        $db = '***REMOVED***';
+        $user = '***REMOVED***';
+        $password = '***REMOVED***';
+        $charset = 'utf8';
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+        $pdo = new \PDO($dsn, $user, $password);
+
+        $tokenStatement = $pdo->prepare(
+            "SELECT access_token, refresh_token, expires
+            FROM `auth`
+            WHERE username = 'arvid.b'");
+
+        $tokenStatement->execute();
+
+        $result = $tokenStatement->fetchObject();
+
+        $accessToken = $result->access_token;
+
+        if (time() > $result->expires) {
+            $session->refreshAccessToken($result->refresh_token);
+            $accessToken = $session->getAccessToken();
+        }
+
+        // Set the access token on the API wrapper
+        $api->setAccessToken($accessToken);
+
+        return $api;
     }
 }

@@ -8,3 +8,4 @@ TODO:
 7. ~~Make cronjob for update.~~
 8. Add logging for cronjob.
 9. Make site look nice.
+10. Add error handling everywhere. Especially db and api calls. And user input.

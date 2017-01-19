@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -6,6 +7,7 @@ error_reporting(E_ALL);
 require '../vendor/autoload.php';
 
 use Boivie\Spotify\Api;
+use Boivie\DailyDouble\Update;
 
 $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
@@ -13,17 +15,8 @@ $redirectURI = '***REMOVED***';
 
 $api = new Api($clientId, $clientSecret, $redirectURI);
 
-if (empty($_GET['code']) === true) {
+$update = new Update($api);
 
-    $authorizeUrl = $api->getAuthorizeUrl([
-        'playlist-read-private',
-        'playlist-read-collaborative',
-    ]);
+$update->updatePlaylists();
 
-    header('Location: ' . $authorizeUrl);
-    die();
-}
-
-$status = $api->getAccessToken($_GET['code']);
-
-echo "Auth successful";
+echo 'Playlists updated';
