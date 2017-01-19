@@ -6,4 +6,5 @@ TODO:
 5. Save artist info for songs.
 6. Save more info on playlists and songs.
 7. ~~Make cronjob for update.~~
-8. Make site look nice.
+8. Add logging for cronjob.
+9. Make site look nice.
