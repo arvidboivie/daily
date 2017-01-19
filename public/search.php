@@ -15,9 +15,9 @@ $redirectURI = '***REMOVED***';
 
 $api = new Api($clientId, $clientSecret, $redirectURI);
 
-$searchTerm = $_GET['search'];
+$searchTerm = empty($_GET['search']) === false ? $_GET['search'] : false;
 
-if (empty($searchTerm) === true) {
+if ($searchTerm === false) {
     echo "Please enter a search term in the query string: <br>".
          "..search.php?search=<search term>";
     die();
