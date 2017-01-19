@@ -4,8 +4,7 @@ namespace Boivie\DailyDouble;
 
 use Boivie\Spotify\Api;
 
-class Update
-{
+class Update {
     protected $api;
 
     public function __construct(Api $api) {
