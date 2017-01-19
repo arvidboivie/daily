@@ -15,6 +15,8 @@ $redirectURI = '***REMOVED***';
 
 $api = new Api($clientId, $clientSecret, $redirectURI);
 
+print_r(get_declared_classes());
+
 $update = new Update($api);
 
 $update->updatePlaylists();
