@@ -5,5 +5,5 @@ TODO:
 4. ~~Make search use songs and playlists from db instead.~~
 5. Save artist info for songs.
 6. Save more info on playlists and songs.
-7. Make cronjob for update.
+7. ~~Make cronjob for update.~~
 8. Make site look nice.
