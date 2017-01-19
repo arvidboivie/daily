@@ -4,7 +4,8 @@ namespace Boivie\DailyDouble;
 
 use Boivie\Spotify\Api;
 
-class Search {
+class Search
+{
 
     protected $api;
 
@@ -41,7 +42,7 @@ class Search {
 
         $songs = $songStatement->fetchAll();
 
-        $results = array_filter($songs, function($songObject) use ($searchTerm) {
+        $results = array_filter($songs, function ($songObject) use ($searchTerm) {
             if (preg_match('/'.$searchTerm.'/i', $songObject['track_name']) === 1) {
                 return true;
             }

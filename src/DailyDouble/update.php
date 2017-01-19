@@ -4,10 +4,12 @@ namespace Boivie\DailyDouble;
 
 use Boivie\Spotify\Api;
 
-class Update {
+class Update
+{
     protected $api;
 
-    public function __construct(Api $api) {
+    public function __construct(Api $api)
+    {
         $this->api = $api;
     }
 
@@ -15,7 +17,7 @@ class Update {
     {
         $playlists = $this->api->getUserPlaylists('arvid.b', ['limit' => 50]);
 
-        $playlists = array_filter($playlists->items, function($list) {
+        $playlists = array_filter($playlists->items, function ($list) {
             if (preg_match('/Dagens Låt \d{2}/', $list->name) === 1) {
                 return true;
             }

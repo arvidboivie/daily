@@ -5,7 +5,8 @@ namespace Boivie\Spotify;
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
 
-class Api {
+class Api
+{
 
     protected $clientId;
     protected $clientSecret;
@@ -96,9 +97,13 @@ class Api {
         $pdo = new \PDO($dsn, $user, $password);
 
         $tokenStatement = $pdo->prepare(
-            "SELECT access_token, refresh_token, expires
+            "SELECT
+            access_token,
+            refresh_token,
+            expires
             FROM `auth`
-            WHERE username = 'arvid.b'");
+            WHERE username = 'arvid.b'"
+        );
 
         $tokenStatement->execute();
 
