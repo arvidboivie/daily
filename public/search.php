@@ -21,7 +21,7 @@ if ($searchTerm === false) {
     die();
 }
 
-$api = new Api($clientId, $clientSecret, $redirectURI)->getApiWrapper();
+$api = (new Api($clientId, $clientSecret, $redirectURI))->getApiWrapper();
 
 $search = new Search($api);
 

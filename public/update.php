@@ -13,7 +13,7 @@ $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
 $redirectURI = '***REMOVED***';
 
-$api = new Api($clientId, $clientSecret, $redirectURI)->getApiWrapper();
+$api = (new Api($clientId, $clientSecret, $redirectURI))->getApiWrapper();
 
 $update = new Update($api);
 
