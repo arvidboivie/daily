@@ -6,6 +6,7 @@ TODO:
 5. Save artist info for songs.
 6. Save more info on playlists and songs.
 7. ~~Make cronjob for update.~~
-8. Add logging for cronjob.
-9. Make site look nice.
-10. Add error handling everywhere. Especially db and api calls. And user input.
+8. Move config (db login) to uncommited config file.
+9. Add logging for cronjob.
+10. Make site look nice.
+11. Add error handling everywhere. Especially db and api calls. And user input.
