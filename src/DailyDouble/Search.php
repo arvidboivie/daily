@@ -71,7 +71,7 @@ class Search
             name AS label,
             id AS value
             FROM tracks
-            WHERE label LIKE :search'
+            WHERE name LIKE :search'
         );
 
         $songStatement->execute([
