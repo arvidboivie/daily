@@ -68,17 +68,17 @@ class Search
 
         $songStatement = $pdo->prepare(
             'SELECT
-            name,
-            id
+            name AS label,
+            id AS value
             FROM tracks
-            WHERE name LIKE :search'
+            WHERE label LIKE :search'
         );
 
         $songStatement->execute([
             'search' => '%'.$searchTerm.'%',
         ]);
 
-        $songs = $songStatement->fetchAll(\PDO::FETCH_KEY_PAIR);
+        $songs = $songStatement->fetchAll(\PDO::FETCH_ASSOC);
 
         return $songs;
     }
