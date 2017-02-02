@@ -15,7 +15,7 @@ $redirectURI = '***REMOVED***';
 
 if (empty($_GET['search']) === true) {
     header('Content-Type: application/json');
-    return json_encode('false');
+    echo json_encode('false');
 }
 
 $searchTerm = $_GET['search'];
@@ -27,4 +27,4 @@ $search = new Search($api);
 $results = $search->search($searchTerm);
 
 header('Content-Type: application/json');
-return json_encode('$results');
+echo json_encode('$results');
