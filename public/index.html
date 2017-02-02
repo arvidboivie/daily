@@ -10,7 +10,7 @@
   <script>
   $( function() {
     function display( id ) {
-        $( "#results" ).append( '<iframe src="https://embed.spotify.com/?uri=spotify%3Atrack%3A'+ id +'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>' );
+        $( "#results" ).append( '<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify%3Aplaylist%3A'+ id +'&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>' );
     }
 
     $( "#search" ).autocomplete({
@@ -19,7 +19,7 @@
         select: function( event, ui ) {
             event.preventDefault();
             $("#search").val(ui.item.label);
-            display( ui.item.value );
+            display( ui.item.playlist );
         },
         focus: function(event, ui) {
             event.preventDefault();

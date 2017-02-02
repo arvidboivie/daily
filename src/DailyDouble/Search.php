@@ -69,7 +69,8 @@ class Search
         $songStatement = $pdo->prepare(
             'SELECT
             name AS label,
-            id AS value
+            id AS value,
+            playlist_id AS playlist
             FROM tracks
             WHERE name LIKE :search'
         );
