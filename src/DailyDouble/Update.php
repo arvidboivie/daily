@@ -34,7 +34,7 @@ class Update
         $pdo = new \PDO($dsn, $user, $password);
 
         $playlistStatement = $pdo->prepare(
-            'INSERT INTO playlists(id, name)
+            'INSERT INTO playlists(id, name, creator)
             VALUES(:id, :name, :creator)
             ON DUPLICATE KEY UPDATE
             name= :name,
