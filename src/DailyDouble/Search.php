@@ -68,8 +68,8 @@ class Search
 
         $songStatement = $pdo->prepare(
             'SELECT
-            id,
-            name
+            name,
+            id
             FROM tracks
             WHERE name LIKE :search'
         );
