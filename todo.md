@@ -9,4 +9,5 @@ TODO:
 8. Move config (db login) to uncommited config file.
 9. Add logging for cronjob.
 10. Make site look nice.
-11. Add error handling everywhere. Especially db and api calls. And user input.
+12. Optimize search queries.
+13. Add error handling everywhere. Especially db and api calls. And user input.
