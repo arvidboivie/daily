@@ -27,4 +27,4 @@ $search = new Search($api);
 $results = $search->search($searchTerm);
 
 header('Content-Type: application/json');
-return json_encode($results);
+return json_encode('$results');
