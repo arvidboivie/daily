@@ -13,12 +13,12 @@ $clientId = '***REMOVED***';
 $clientSecret = '***REMOVED***';
 $redirectURI = '***REMOVED***';
 
-if (empty($_GET['search']) === true) {
+if (empty($_GET['term']) === true) {
     header('Content-Type: application/json');
     echo json_encode('false');
 }
 
-$searchTerm = $_GET['search'];
+$searchTerm = $_GET['term'];
 
 $api = (new Api($clientId, $clientSecret, $redirectURI))->getApiWrapper();
 
