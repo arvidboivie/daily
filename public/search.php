@@ -24,7 +24,7 @@ $api = (new Api($clientId, $clientSecret, $redirectURI))->getApiWrapper();
 
 $search = new Search($api);
 
-$results = $search->search($searchTerm);
+$results = $search->getSongNames($searchTerm);
 
 header('Content-Type: application/json');
 echo json_encode($results);

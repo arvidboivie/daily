@@ -53,4 +53,32 @@ class Search
 
         return $results;
     }
+
+    public function getSongNames($searchTerm)
+    {
+        $host = '***REMOVED***';
+        $db = '***REMOVED***';
+        $user = '***REMOVED***';
+        $password = '***REMOVED***';
+        $charset = 'utf8';
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+        $pdo = new \PDO($dsn, $user, $password);
+
+        $songStatement = $pdo->prepare(
+            'SELECT
+            tracks.name AS track_name
+            FROM tracks
+            WHERE track_name LIKE :search'
+        );
+
+        $songStatement->execute([
+            'search' => $searchToken,
+        ]);
+
+        $songs = $songStatement->fetchAll();
+
+        return $results;
+    }
 }
