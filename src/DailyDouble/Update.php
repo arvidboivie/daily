@@ -35,9 +35,10 @@ class Update
 
         $playlistStatement = $pdo->prepare(
             'INSERT INTO playlists(id, name)
-            VALUES(:id, :name)
+            VALUES(:id, :name, :creator)
             ON DUPLICATE KEY UPDATE
-            name= :name'
+            name= :name,
+            creator= :creator'
         );
 
         $trackStatement = $pdo->prepare(
@@ -52,8 +53,9 @@ class Update
 
         foreach ($playlists as $list) {
             $playlistStatement->execute([
-            'id' => $list->id,
-            'name' => $list->name,
+                'id' => $list->id,
+                'name' => $list->name,
+                'creator' => $list->owner->id,
             ]);
 
             $songs = $this->api->getUserPlaylistTracks($list->owner->id, $list->id)->items;
