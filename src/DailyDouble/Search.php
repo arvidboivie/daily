@@ -77,8 +77,8 @@ class Search
             'search' => '%'.$searchTerm.'%',
         ]);
 
-        $songs = $songStatement->fetchAll();
+        $songs = $songStatement->fetchAll(PDO::FETCH_ASSOC);
 
-        return $songs;
+        return array_column($songs, 'name');
     }
 }
