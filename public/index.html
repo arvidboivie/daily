@@ -10,7 +10,7 @@
   <script>
   $( function() {
     function display( id, creator ) {
-        $( "#results" ).append( '<iframe src="https://embed.spotify.com/?uri=spotify%3A'+ creator +'%3Aplaylist%3A'+ id +'&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>' );
+        $( "#results" ).append( '<iframe src="https://embed.spotify.com/?uri=spotify:user:'+ creator + ':playlist:' + id + '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>' );
     }
 
     $( "#search" ).autocomplete({
