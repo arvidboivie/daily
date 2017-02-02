@@ -69,7 +69,6 @@ class Search
         $songStatement = $pdo->prepare(
             'SELECT
             tracks.name AS label,
-            tracks.id AS value,
             tracks.playlist_id AS playlist,
             playlists.creator AS creator
             FROM tracks
