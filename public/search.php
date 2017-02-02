@@ -15,7 +15,7 @@ $clientSecret = '***REMOVED***';
 $redirectURI = '***REMOVED***';
 
 if (empty($_GET['search']) === true) {
-    return json_encode(false);
+    return json_encode('false');
 }
 
 $searchTerm = $_GET['search'];
