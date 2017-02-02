@@ -73,7 +73,7 @@ class Search
             WHERE track_name LIKE :search'
         );
 
-        $songStatemnt->execute([
+        $songStatement->execute([
             'search' => $searchToken,
         ]);
 

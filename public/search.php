@@ -18,7 +18,7 @@ if (empty($_GET['search']) === true) {
     echo json_encode('false');
 }
 
-$searchTerm = $_GET['seach'];
+$searchTerm = $_GET['search'];
 
 $api = (new Api($clientId, $clientSecret, $redirectURI))->getApiWrapper();
 
