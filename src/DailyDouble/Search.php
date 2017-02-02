@@ -74,11 +74,11 @@ class Search
         );
 
         $songStatement->execute([
-            'search' => $searchToken,
+            'search' => $searchTerm,
         ]);
 
         $songs = $songStatement->fetchAll();
 
-        return $results;
+        return $songs;
     }
 }
