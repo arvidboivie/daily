@@ -70,7 +70,7 @@ class Search
             'SELECT
             tracks.name AS track_name
             FROM tracks
-            WHERE track_name LIKE :search'
+            WHERE track_name LIKE %:search%'
         );
 
         $songStatement->execute([
