@@ -54,7 +54,7 @@ class Search
         return $results;
     }
 
-    public function getSongsForSearch($searchTerm)
+    public function getSongs($searchTerm)
     {
         $host = '***REMOVED***';
         $db = '***REMOVED***';
