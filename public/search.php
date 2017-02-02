@@ -16,6 +16,7 @@ $redirectURI = '***REMOVED***';
 if (empty($_GET['term']) === true) {
     header('Content-Type: application/json');
     echo json_encode('false');
+    die();
 }
 
 $searchTerm = $_GET['term'];
