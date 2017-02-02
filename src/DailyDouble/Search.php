@@ -54,7 +54,7 @@ class Search
         return $results;
     }
 
-    public function getSongNames($searchTerm)
+    public function getSongsForSearch($searchTerm)
     {
         $host = '***REMOVED***';
         $db = '***REMOVED***';
@@ -68,11 +68,13 @@ class Search
 
         $songStatement = $pdo->prepare(
             'SELECT
-            name AS label,
-            id AS value,
-            playlist_id AS playlist
+            tracks.name AS label,
+            tracks.id AS value,
+            tracks.playlist_id AS playlist,
+            playlists.creator AS creator
             FROM tracks
-            WHERE name LIKE :search'
+            LEFT JOIN playlists ON playlists.id = tracks.playlist_id
+            WHERE tracks.name LIKE :search'
         );
 
         $songStatement->execute([
