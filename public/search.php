@@ -3,7 +3,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-header('Content-Type: application/json');
 
 require '../vendor/autoload.php';
 
@@ -15,6 +14,7 @@ $clientSecret = '***REMOVED***';
 $redirectURI = '***REMOVED***';
 
 if (empty($_GET['search']) === true) {
+    header('Content-Type: application/json');
     return json_encode('false');
 }
 
@@ -26,4 +26,5 @@ $search = new Search($api);
 
 $results = $search->search($searchTerm);
 
+header('Content-Type: application/json');
 return json_encode($results);
