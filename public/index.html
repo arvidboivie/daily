@@ -9,17 +9,22 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
+    function display( id ) {
+      $( "<div>" ).text( '<iframe src="https://embed.spotify.com/?uri=spotify%3Atrack%'+id+'" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>' ).prependTo( "#results" );
     }
 
     $( "#search" ).autocomplete({
       source: "search.php?" + $( "#search" ).val(),
       minLength: 3,
       select: function( event, ui ) {
-        console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+        event.preventDefault();
+        $("#search").val(ui.item.label);
+        display( ui.item.value );
       }
+      focus: function(event, ui) {
+        event.preventDefault();
+        $("#search").val(ui.item.label);
+    }
     });
   } );
   </script>
