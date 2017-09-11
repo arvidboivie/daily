@@ -6,27 +6,26 @@ use SpotifyWebAPI\SpotifyWebAPI;
 
 class Search
 {
+    /**
+     * @var SpotifyWebAPI
+     */
+    private $api;
 
-    protected $api;
+    /**
+     * @var PDO
+     */
+    private $db;
 
-    public function __construct(SpotifyWebAPI $api)
+    public function __construct(SpotifyWebAPI $api, \PDO $db)
     {
         $this->api = $api;
+        $this->db = $db;
     }
 
+    //TODO: Remove or use this function
     public function search($searchTerm)
     {
-        $host = '***REMOVED***';
-        $db = '***REMOVED***';
-        $user = '***REMOVED***';
-        $password = '***REMOVED***';
-        $charset = 'utf8';
-
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-        $pdo = new \PDO($dsn, $user, $password);
-
-        $songStatement = $pdo->prepare(
+        $songStatement = $this->db->prepare(
             'SELECT
             tracks.id AS track_id,
             tracks.name AS track_name,
@@ -56,17 +55,7 @@ class Search
 
     public function getSongs($searchTerm)
     {
-        $host = '***REMOVED***';
-        $db = '***REMOVED***';
-        $user = '***REMOVED***';
-        $password = '***REMOVED***';
-        $charset = 'utf8';
-
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-        $pdo = new \PDO($dsn, $user, $password);
-
-        $songStatement = $pdo->prepare(
+        $songStatement = $this->db->prepare(
             'SELECT
             tracks.name AS label,
             tracks.playlist_id AS playlist,

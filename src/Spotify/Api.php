@@ -5,7 +5,7 @@ namespace Boivie\Spotify;
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
 
-class Api
+class SpotifyApi
 {
 
     protected $clientId;

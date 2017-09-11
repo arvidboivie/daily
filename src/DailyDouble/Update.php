@@ -6,11 +6,20 @@ use SpotifyWebAPI\SpotifyWebAPI;
 
 class Update
 {
-    protected $api;
+    /**
+     * @var SpotifyWebAPI
+     */
+    private $api;
 
-    public function __construct(SpotifyWebAPI $api)
+    /**
+     * @var PDO
+     */
+    private $db;
+
+    public function __construct(SpotifyWebAPI $api, \PDO $db)
     {
         $this->api = $api;
+        $this->db = $db;
     }
 
     public function updatePlaylists()
@@ -23,17 +32,7 @@ class Update
             }
         });
 
-        $host = '***REMOVED***';
-        $db = '***REMOVED***';
-        $user = '***REMOVED***';
-        $password = '***REMOVED***';
-        $charset = 'utf8';
-
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-        $pdo = new \PDO($dsn, $user, $password);
-
-        $playlistStatement = $pdo->prepare(
+        $playlistStatement = $this->db->prepare(
             'INSERT INTO playlists(id, name, creator)
             VALUES(:id, :name, :creator)
             ON DUPLICATE KEY UPDATE
@@ -41,7 +40,7 @@ class Update
             creator= :creator'
         );
 
-        $trackStatement = $pdo->prepare(
+        $trackStatement = $this->db->prepare(
             'INSERT INTO tracks(id, name, album, added_by, playlist_id)
             VALUES(:id, :name, :album, :added_by, :playlist_id)
             ON DUPLICATE KEY UPDATE

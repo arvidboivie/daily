@@ -1,6 +1,7 @@
 Order Allow,Deny
 Allow from all
 
-RewriteCond %{REQUEST_URI} !/public/
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ public/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ public/index.php [QSA,L]
