@@ -101,4 +101,33 @@ $app->get('/update', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/spotify/auth/', function (Request $request, Response $response) {
+    $api = (new SpotifyApi(
+        $this->db,
+        $spotify['client_id'],
+        $spotify['client_secret'],
+        $spotify['redirect_URI']
+    ))->getApiWrapper();
+
+    $queryString = $request->getQueryParams();
+
+    if (empty($queryString['code']) === true) {
+        $authorizeUrl = $api->getAuthorizeUrl([
+            'playlist-read-private',
+            'playlist-read-collaborative',
+        ]);
+
+        return $response->withRedirect($authorizeUrl, 302);
+    }
+
+    $response->getBody()->write('Auth failed.');
+
+    return $response;
+});
+
+
+$status = $api->getAccessToken($_GET['code']);
+
+echo "Auth successful";
+
 $app->run();
