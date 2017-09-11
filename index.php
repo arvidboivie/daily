@@ -67,6 +67,12 @@ $app->get('/search/{term}', function (Request $request, Response $response) {
         $spotify['redirect_URI']
     ))->getApiWrapper();
 
+    if (empty($request->getAttribute('term')) === true) {
+        $response->write(json_encode(false));
+
+        return $response;
+    }
+
     $search = new Search($api, $this->db);
 
     $results = $search->getSongs($request->getAttribute('term'));
