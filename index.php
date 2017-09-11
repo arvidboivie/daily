@@ -61,6 +61,7 @@ $app->get('/search/{term}', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
     $api = (new SpotifyApi(
+        $this->db,
         $spotify['client_id'],
         $spotify['client_secret'],
         $spotify['redirect_URI']
@@ -79,6 +80,7 @@ $app->get('/update', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
     $api = (new SpotifyApi(
+        $this->db,
         $spotify['client_id'],
         $spotify['client_secret'],
         $spotify['redirect_URI']
