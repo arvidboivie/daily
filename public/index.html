@@ -14,7 +14,9 @@
     }
 
     $( "#search" ).autocomplete({
-        source: "search.php?" + $( "#search" ).val(),
+        source: function(term, callback) {
+            $.getJSON("https://api.arvidboivie.se/search/"+$( "#search" ).val(), callback);
+        },
         minLength: 3,
         select: function( event, ui ) {
             event.preventDefault();

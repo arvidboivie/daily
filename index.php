@@ -44,6 +44,19 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
+// Add lazy CORS
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', 'https://www.arvidboivie.se')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+});
+
 $app->get('/search/{term}', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
