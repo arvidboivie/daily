@@ -55,7 +55,7 @@ $app->get('/search/{term}', function (Request $request, Response $response) {
 
     $search = new Search($api, $this->db);
 
-    $results = $search->getSongs($args['term']);
+    $results = $search->getSongs($request->getAttribute('term'));
 
     $response->write(json_encode($results));
 
