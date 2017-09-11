@@ -120,7 +120,9 @@ $app->get('/spotify/auth/', function (Request $request, Response $response) {
         return $response->withRedirect($authorizeUrl, 302);
     }
 
-    $response->getBody()->write('Auth failed.');
+    $status = $api->getAccessToken($queryString['code']);
+
+    $response->getBody()->write('Auth successful');
 
     return $response;
 });
