@@ -29,7 +29,7 @@ $container = $app->getContainer();
 
 $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('logger');
-    $file_handler = new \Monolog\Handler\StreamHandler("../../logs/app.log");
+    $file_handler = new \Monolog\Handler\StreamHandler(__DIR__."/logs/app.log");
     $logger->pushHandler($file_handler);
     return $logger;
 };
@@ -58,8 +58,6 @@ $app->add(function ($req, $res, $next) {
 });
 
 $app->get('/search/{term}', function (Request $request, Response $response) {
-    $spotify = $this->get('settings')['spotify'];
-
     if (empty($request->getAttribute('term')) === true) {
         $response->write(json_encode(false));
 
@@ -101,6 +99,8 @@ $app->get('/update', function (Request $request, Response $response) {
 });
 
 $app->get('/spotify/auth/', function (Request $request, Response $response) {
+    $spotify = $this->get('settings')['spotify'];
+
     $api = (new SpotifyApi(
         $this->db,
         $spotify['client_id'],
@@ -125,10 +125,5 @@ $app->get('/spotify/auth/', function (Request $request, Response $response) {
 
     return $response;
 });
-
-
-$status = $api->getAccessToken($_GET['code']);
-
-echo "Auth successful";
 
 $app->run();
