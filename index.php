@@ -60,20 +60,13 @@ $app->add(function ($req, $res, $next) {
 $app->get('/search/{term}', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
-    $api = (new SpotifyApi(
-        $this->db,
-        $spotify['client_id'],
-        $spotify['client_secret'],
-        $spotify['redirect_URI']
-    ))->getApiWrapper();
-
     if (empty($request->getAttribute('term')) === true) {
         $response->write(json_encode(false));
 
         return $response;
     }
 
-    $search = new Search($api, $this->db);
+    $search = new Search($this->db);
 
     $results = $search->getSongs($request->getAttribute('term'));
 

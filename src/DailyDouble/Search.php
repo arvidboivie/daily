@@ -2,23 +2,15 @@
 
 namespace Boivie\DailyDouble;
 
-use SpotifyWebAPI\SpotifyWebAPI;
-
 class Search
 {
     /**
-     * @var SpotifyWebAPI
-     */
-    private $api;
-
-    /**
-     * @var PDO
+     * @var \PDO
      */
     private $db;
 
-    public function __construct(SpotifyWebAPI $api, \PDO $db)
+    public function __construct(\PDO $db)
     {
-        $this->api = $api;
         $this->db = $db;
     }
 
