@@ -12,7 +12,7 @@ class SpotifyApiHelper
     private $clientSecret;
     private $redirectURI;
 
-    public function __construct(\PDO $db, string $clientId, string $clientSecret, $redirectURI = null)
+    public function __construct(\PDO $db, string $clientId, string $clientSecret, $redirectURI)
     {
         $this->db = $db;
         $this->clientId = $clientId;
