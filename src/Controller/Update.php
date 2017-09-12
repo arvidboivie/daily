@@ -1,6 +1,6 @@
 <?php
 
-namespace Boivie\DailyDouble;
+namespace DailyDouble\Controller;
 
 use SpotifyWebAPI\SpotifyWebAPI;
 

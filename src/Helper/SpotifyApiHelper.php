@@ -1,11 +1,11 @@
 <?php
 
-namespace Boivie\Spotify;
+namespace DailyDouble\Helper;
 
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
 
-class SpotifyApi
+class SpotifyApiHelper
 {
     private $db;
     private $clientId;

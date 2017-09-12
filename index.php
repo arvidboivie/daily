@@ -4,9 +4,9 @@ require 'vendor/autoload.php';
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use Boivie\Spotify\SpotifyApi;
-use Boivie\DailyDouble\Search;
-use Boivie\DailyDouble\Update;
+use DailyDouble\Helper\SpotifyApiHelper;
+use DailyDouble\Controller\Search;
+use DailyDouble\Controller\Update;
 use Noodlehaus\Config;
 
 $config = Config::load('config.yml');
@@ -70,7 +70,7 @@ $app->get('/search/{term}', function (Request $request, Response $response) {
 $app->get('/update', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
-    $api = (new SpotifyApi(
+    $api = (new SpotifyApiHelper(
         $this->db,
         $spotify['client_id'],
         $spotify['client_secret'],
@@ -95,7 +95,7 @@ $app->get('/update', function (Request $request, Response $response) {
 $app->get('/spotify/auth/', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
 
-    $api = (new SpotifyApi(
+    $api = (new SpotifyApiHelper(
         $this->db,
         $spotify['client_id'],
         $spotify['client_secret'],

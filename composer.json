@@ -18,8 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Boivie\\Spotify\\": "src/Spotify",
-            "Boivie\\DailyDouble\\": "src/DailyDouble"
+            "DailyDouble\\": "src/",
         }
     }
 }

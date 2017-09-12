@@ -8,7 +8,7 @@
 
 require_once 'vendor/autoload.php';
 
-use Boivie\DailyDouble\Command\UpdateCommand;
+use DailyDouble\Command\UpdateCommand;
 use Noodlehaus\Config;
 
 $jobby = new \Jobby\Jobby();
@@ -16,8 +16,9 @@ $config = Config::load('config.yml');
 
 $jobby->add('UpdateCommand', array(
     'command' => (new UpdateCommand($config))->run(),
-    'schedule' => '*/15 * * * *',
-    'output' => 'logs/command.log',
+    'schedule' => '* * * * *',
+    // 'output' => 'logs/command.log',
+    'recipients' => 'arvid.boivie@gmail.com',
     'enabled' => true,
 ));
 

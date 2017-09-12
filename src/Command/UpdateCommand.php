@@ -1,10 +1,11 @@
 <?php
 
-namespace Boivie\DailyDouble\Command;
+namespace DailyDouble\Command;
 
-use Boivie\DailyDouble\Update;
-use Boivie\Spotify\SpotifyApi;
+use DailyDouble\Controller\Update;
+use DailyDouble\Helper\SpotifyApiHelper;
 use Noodlehaus\Config;
+use \PDO;
 
 class UpdateCommand
 {
@@ -29,7 +30,7 @@ class UpdateCommand
 
         $spotify = $this->config->get('spotify');
 
-        $api = (new SpotifyApi(
+        $api = (new SpotifyApiHelper(
             $db,
             $spotify['client_id'],
             $spotify['client_secret'],

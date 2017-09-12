@@ -1,6 +1,6 @@
 <?php
 
-namespace Boivie\DailyDouble;
+namespace DailyDouble\Controller;
 
 class Search
 {
