@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -13,13 +13,7 @@ $config = Config::load('config.yml');
 
 $slimConfig = [
     'displayErrorDetails' => true,
-    'db' => [
-            'host' => $config->get('database.host'),
-            'name' => $config->get('database.name'),
-            'user' => $config->get('database.user'),
-            'password' => $config->get('database.password'),
-            'charset' => $config->get('database.charset'),
-        ],
+    'db' => $config->get('database'),
     'spotify' => $config->get('spotify'),
 ];
 
@@ -29,7 +23,7 @@ $container = $app->getContainer();
 
 $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('logger');
-    $file_handler = new \Monolog\Handler\StreamHandler(__DIR__."/logs/app.log");
+    $file_handler = new \Monolog\Handler\StreamHandler('logs/app.log');
     $logger->pushHandler($file_handler);
     return $logger;
 };
