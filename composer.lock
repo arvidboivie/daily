@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "89257bb26fd2110306681fec22ba0c5a",
+    "content-hash": "3ecaded86c61951e09e19cc9f0362cf7",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -93,6 +93,114 @@
                 "yml"
             ],
             "time": "2016-02-11T16:21:17+00:00"
+        },
+        {
+            "name": "hellogerard/jobby",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobbyphp/jobby.git",
+                "reference": "84a5ab9cb98ba5c5f3087944bc2a5a1bc761d145"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobbyphp/jobby/zipball/84a5ab9cb98ba5c5f3087944bc2a5a1bc761d145",
+                "reference": "84a5ab9cb98ba5c5f3087944bc2a5a1bc761d145",
+                "shasum": ""
+            },
+            "require": {
+                "jeremeamia/superclosure": "^2.2",
+                "mtdowling/cron-expression": "^1.0",
+                "php": ">=5.4",
+                "swiftmailer/swiftmailer": "^5.4",
+                "symfony/process": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "symfony/filesystem": "^2.7|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jobby\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gerard Sychay",
+                    "email": "hellogerard@gmail.com",
+                    "homepage": "https://github.com/hellogerard"
+                },
+                {
+                    "name": "Michael Contento",
+                    "homepage": "https://github.com/michaelcontento"
+                }
+            ],
+            "description": "Manage all your cron jobs without modifying crontab. Handles locking, logging, error emails, and more.",
+            "homepage": "https://github.com/jobbyphp/jobby",
+            "time": "2017-05-05T15:05:15+00:00"
+        },
+        {
+            "name": "jeremeamia/SuperClosure",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremeamia/super_closure.git",
+                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/443c3df3207f176a1b41576ee2a66968a507b3db",
+                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^1.2|^2.0|^3.0",
+                "php": ">=5.4",
+                "symfony/polyfill-php56": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SuperClosure\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Lindblom",
+                    "email": "jeremeamia@gmail.com",
+                    "homepage": "https://github.com/jeremeamia",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Serialize Closure objects, including their context and binding",
+            "homepage": "https://github.com/jeremeamia/super_closure",
+            "keywords": [
+                "closure",
+                "function",
+                "lambda",
+                "parser",
+                "serializable",
+                "serialize",
+                "tokenizer"
+            ],
+            "time": "2016-12-07T09:37:55+00:00"
         },
         {
             "name": "jwilsson/spotify-web-api-php",
@@ -219,6 +327,50 @@
             "time": "2017-06-19T01:22:40+00:00"
         },
         {
+            "name": "mtdowling/cron-expression",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtdowling/cron-expression.git",
+                "reference": "9504fa9ea681b586028adaaa0877db4aecf32bad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtdowling/cron-expression/zipball/9504fa9ea681b586028adaaa0877db4aecf32bad",
+                "reference": "9504fa9ea681b586028adaaa0877db4aecf32bad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "CRON for PHP: Calculate the next or previous run date and determine if a CRON expression is due",
+            "keywords": [
+                "cron",
+                "schedule"
+            ],
+            "time": "2017-01-23T04:29:33+00:00"
+        },
+        {
             "name": "nikic/fast-route",
             "version": "v1.2.0",
             "source": {
@@ -260,6 +412,57 @@
                 "routing"
             ],
             "time": "2017-01-19T11:35:12+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2017-09-02T17:10:46+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -527,6 +730,217 @@
                 "router"
             ],
             "time": "2017-03-19T17:55:20+00:00"
+        },
+        {
+            "name": "swiftmailer/swiftmailer",
+            "version": "v5.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swiftmailer/swiftmailer.git",
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/9a06dc570a0367850280eefd3f1dc2da45aef517",
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.1",
+                "symfony/phpunit-bridge": "~3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.4-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "lib/swift_required.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Corbyn"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Swiftmailer, free feature-rich PHP mailer",
+            "homepage": "http://swiftmailer.org",
+            "keywords": [
+                "email",
+                "mail",
+                "mailer"
+            ],
+            "time": "2017-05-01T15:54:03+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php56",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php56.git",
+                "reference": "e85ebdef569b84e8709864e1a290c40f156b30ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/e85ebdef569b84e8709864e1a290c40f156b30ca",
+                "reference": "e85ebdef569b84e8709864e1a290c40f156b30ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/polyfill-util": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php56\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 5.6+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2017-06-14T15:44:48+00:00"
+        },
+        {
+            "name": "symfony/polyfill-util",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-util.git",
+                "reference": "67925d1cf0b84bd234a83bebf26d4eb281744c6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/67925d1cf0b84bd234a83bebf26d4eb281744c6d",
+                "reference": "67925d1cf0b84bd234a83bebf26d4eb281744c6d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Util\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony utilities for portability of PHP codes",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compat",
+                "compatibility",
+                "polyfill",
+                "shim"
+            ],
+            "time": "2017-07-05T15:09:33+00:00"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v3.3.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "b7666e9b438027a1ea0e1ee813ec5042d5d7f6f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/b7666e9b438027a1ea0e1ee813ec5042d5d7f6f0",
+                "reference": "b7666e9b438027a1ea0e1ee813ec5042d5d7f6f0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-07-29T21:54:42+00:00"
         },
         {
             "name": "symfony/yaml",
