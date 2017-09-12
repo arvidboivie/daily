@@ -19,14 +19,13 @@ class UpdateCommand
 
     public function run()
     {
-        $db = $this->config->get('database');
+        $dbConfig = $this->config->get('database');
 
-        $dsn = "mysql:host=".$db['host'].";dbname=".$db['name'].";charset=".$db['charset'];
+        $dsn = "mysql:host=".$dbConfig['host'].";dbname=".$dbConfig['name'].";charset=".$dbConfig['charset'];
 
-        $pdo = new PDO($dsn, $db['user'], $db['password']);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        return $pdo;
+        $db = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         $spotify = $this->config->get('spotify');
 
@@ -41,10 +40,6 @@ class UpdateCommand
 
         $status = $update->updatePlaylists();
 
-        if ($status !== true) {
-            echo 'Something went wrong';
-        }
-
-        echo 'Playlists updated';
+        return $status;
     }
 }
