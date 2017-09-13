@@ -3,7 +3,7 @@
 namespace DailyDouble\Command;
 
 use DailyDouble\Controller\Update;
-use DailyDouble\Helper\SpotifyApiHelper;
+use Boivie\SpotifyApiHelper\SpotifyApiHelper;
 use Noodlehaus\Config;
 use \PDO;
 
