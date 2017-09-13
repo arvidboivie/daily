@@ -1,11 +1,11 @@
-spotify:
-    client_id: a1b2c3d4
-    client_secret: a1b2c3d4
-    redirect_URI: https://www.example.com/auth.php
-
 database:
     host: 0.0.0.0
     name: name
     user: user
     password: password
     charset: utf8
+
+spotify:
+    client_id: a1b2c3d4
+    client_secret: a1b2c3d4
+    redirect_URI: https://www.example.com/auth.php
