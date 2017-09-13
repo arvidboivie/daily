@@ -12,7 +12,7 @@ $jobby->add('UpdateCommand', array(
     'closure' => function () use ($config) {
         return (new UpdateCommand($config))->run();
     },
-    'schedule' => '0 * * * *',
+    'schedule' => '*/10 * * * *',
     'output' => 'logs/command.log',
     'debug' => true,
     'enabled' => true,
