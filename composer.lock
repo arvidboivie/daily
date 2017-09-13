@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ecaded86c61951e09e19cc9f0362cf7",
+    "content-hash": "e9a2567379be69a7c18ae1607ee9f121",
     "packages": [
+        {
+            "name": "boivie/spotify-api-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/arvidboivie/spotify-api-helper.git",
+                "reference": "b6aaf54587ad687dad290c6c920978bd769b52d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/arvidboivie/spotify-api-helper/zipball/b6aaf54587ad687dad290c6c920978bd769b52d9",
+                "reference": "b6aaf54587ad687dad290c6c920978bd769b52d9",
+                "shasum": ""
+            },
+            "require": {
+                "jwilsson/spotify-web-api-php": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Boivie\\SpotifyApiHelper\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Arvid Boivie",
+                    "email": "arvid.boivie@gmail.com"
+                }
+            ],
+            "description": "Helps me use https://github.com/jwilsson/spotify-web-api-php/",
+            "support": {
+                "source": "https://github.com/arvidboivie/spotify-api-helper/tree/master",
+                "issues": "https://github.com/arvidboivie/spotify-api-helper/issues"
+            },
+            "time": "2017-09-13T18:46:55+00:00"
+        },
         {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
@@ -204,26 +240,26 @@
         },
         {
             "name": "jwilsson/spotify-web-api-php",
-            "version": "1.5.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jwilsson/spotify-web-api-php.git",
-                "reference": "2b87818f3e87ac053e97263fd4ced6021044def2"
+                "reference": "075507c7509948e09354f8ab21c5d6f7962694b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jwilsson/spotify-web-api-php/zipball/2b87818f3e87ac053e97263fd4ced6021044def2",
-                "reference": "2b87818f3e87ac053e97263fd4ced6021044def2",
+                "url": "https://api.github.com/repos/jwilsson/spotify-web-api-php/zipball/075507c7509948e09354f8ab21c5d6f7962694b7",
+                "reference": "075507c7509948e09354f8ab21c5d6f7962694b7",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": "^5.5 || ^7.0"
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^6.0",
                 "satooshi/php-coveralls": "dev-master",
-                "squizlabs/php_codesniffer": "^2.0"
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -246,7 +282,7 @@
             "keywords": [
                 "spotify"
             ],
-            "time": "2016-12-11T16:55:52+00:00"
+            "time": "2017-08-15T18:45:26+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1000,8 +1036,10 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "boivie/spotify-api-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
