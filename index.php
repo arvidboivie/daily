@@ -88,7 +88,7 @@ $app->get('/update', function (Request $request, Response $response) {
 
     $update = new Update($api, $this->db);
 
-    $status = $update->updatePlaylists();
+    $status = $update->updatePlaylists($spotify['playlist_user'], $spotify['playlist_pattern']);
 
     if ($status !== true) {
         $response->getBody()->write('Something went wrong');

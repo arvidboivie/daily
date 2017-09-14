@@ -38,7 +38,7 @@ class UpdateCommand
 
         $update = new Update($api, $db);
 
-        $status = $update->updatePlaylists();
+        $status = $update->updatePlaylists($spotify['playlist_user'], $spotify['playlist_pattern']);
 
         return $status;
     }

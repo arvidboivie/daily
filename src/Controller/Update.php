@@ -22,12 +22,12 @@ class Update
         $this->db = $db;
     }
 
-    public function updatePlaylists()
+    public function updatePlaylists($user, $pattern)
     {
-        $playlists = $this->api->getUserPlaylists('arvid.b', ['limit' => 50]);
+        $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
 
-        $playlists = array_filter($playlists->items, function ($list) {
-            if (preg_match('/Dagens Låt \d{2}/', $list->name) === 1) {
+        $playlists = array_filter($playlists->items, function ($list) use ($pattern) {
+            if (preg_match($pattern, $list->name) === 1) {
                 return true;
             }
         });
