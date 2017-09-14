@@ -13,9 +13,9 @@ $config = Config::load('config.yml');
 
 $slimConfig = [
     'displayErrorDetails' => true,
-    'db' => $config->get('database'),
-    'spotify' => $config->get('spotify'),
 ];
+
+$slimConfig = array_merge($slimConfig, $config->all());
 
 $app = new \Slim\App(['settings' => $slimConfig]);
 
@@ -28,7 +28,7 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 $container['db'] = function ($c) {
-    $db = $c['settings']['db'];
+    $db = $c['settings']['database'];
 
     $dsn = "mysql:host=".$db['host'].";dbname=".$db['name'].";charset=".$db['charset'];
 
@@ -88,7 +88,38 @@ $app->get('/update', function (Request $request, Response $response) {
 
     $update = new Update($api, $this->db);
 
-    $status = $update->updatePlaylists($spotify['playlist_user'], $spotify['playlist_pattern']);
+    $status = $update->updatePlaylists(
+        $spotify['playlist_user'],
+        $spotify['playlist_pattern']
+    );
+
+    if ($status !== true) {
+        $response->getBody()->write('Something went wrong');
+
+        return $response;
+    }
+
+    $response->getBody()->write('Playlists updated');
+
+    return $response;
+});
+
+$app->get('/update/latest/', function (Request $request, Response $response) {
+    $spotify = $this->get('settings')['spotify'];
+
+    $api = (new SpotifyApiHelper(
+        $this->db,
+        $spotify['client_id'],
+        $spotify['client_secret'],
+        $spotify['redirect_URI']
+    ))->getApiWrapper();
+
+    $update = new Update($api, $this->db);
+
+    $status = $update->updateLatestPlaylist(
+        $spotify['playlist_user'],
+        $spotify['playlist_pattern']
+    );
 
     if ($status !== true) {
         $response->getBody()->write('Something went wrong');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9a2567379be69a7c18ae1607ee9f121",
+    "content-hash": "ad3d28b5026662a917697d52bd9c671a",
     "packages": [
         {
             "name": "boivie/spotify-api-helper",
@@ -1040,7 +1040,7 @@
     "stability-flags": {
         "boivie/spotify-api-helper": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": []

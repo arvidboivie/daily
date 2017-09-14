@@ -22,6 +22,33 @@ class Update
         $this->db = $db;
     }
 
+    public function updateLatestPlaylist($user, $pattern)
+    {
+        $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
+
+        $playlist = array_reduce($playlists->items, function ($carry, $list) use ($pattern) {
+            $matches = [];
+
+            if (preg_match($pattern, $list->name, $matches) === 1) {
+                if ((int)$matches[1] > $carry['number']) {
+                    return [
+                        'number' => (int)$matches[1],
+                        'name' => $list->name,
+                    ];
+                }
+
+                return $carry;
+            }
+
+            return $carry;
+        }, [
+            'number' => 0,
+            'name' => null,
+        ]);
+
+        print_r($playlist);
+    }
+
     public function updatePlaylists($user, $pattern)
     {
         $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
