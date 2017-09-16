@@ -3,7 +3,7 @@
 
 require_once '../vendor/autoload.php';
 
-use DailyDouble\Command\UpdateCommand;
+use Boivie\Daily\Command\UpdateCommand;
 use Noodlehaus\Config;
 
 $jobby = new \Jobby\Jobby();

@@ -1,8 +1,8 @@
 <?php
 
-namespace DailyDouble\Controller;
+namespace Boivie\Daily\Controller;
 
-use DailyDouble\Action\UpdateAction;
+use Boivie\Daily\Action\UpdateAction;
 use Interop\Container\ContainerInterface;
 use SpotifyWebAPI\SpotifyWebAPI;
 

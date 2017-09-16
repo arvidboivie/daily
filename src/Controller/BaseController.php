@@ -1,6 +1,6 @@
 <?php
 
-namespace DailyDouble\Controller;
+namespace Boivie\Daily\Controller;
 
 use Interop\Container\ContainerInterface;
 use GuzzleHttp;

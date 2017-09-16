@@ -1,9 +1,9 @@
 <?php
 
-namespace DailyDouble\Command;
+namespace Boivie\Daily\Command;
 
 use \PDO;
-use DailyDouble\Controller\Update;
+use Boivie\Daily\Controller\Update;
 use GuzzleHttp;
 use Noodlehaus\Config;
 use SpotifyWebAPI\SpotifyWebAPI;

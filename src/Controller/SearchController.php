@@ -1,8 +1,8 @@
 <?php
 
-namespace DailyDouble\Controller;
+namespace Boivie\Daily\Controller;
 
-use DailyDouble\Action\SearchAction;
+use Boivie\Daily\Action\SearchAction;
 use Interop\Container\ContainerInterface;
 
 class SearchController extends BaseController

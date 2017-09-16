@@ -4,8 +4,8 @@ require '../vendor/autoload.php';
 
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
-use DailyDouble\Controller\SearchController;
-use DailyDouble\Controller\UpdateController;
+use Boivie\Daily\Controller\SearchController;
+use Boivie\Daily\Controller\UpdateController;
 use GuzzleHttp;
 use Noodlehaus\Config;
 

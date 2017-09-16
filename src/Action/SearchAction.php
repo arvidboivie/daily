@@ -1,6 +1,6 @@
 <?php
 
-namespace DailyDouble\Action;
+namespace Boivie\Daily\Action;
 
 class SearchAction
 {
