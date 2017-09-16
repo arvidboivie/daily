@@ -26,7 +26,7 @@ class UpdateAction
     {
         $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
 
-        $playlist = array_reduce($playlists->items, function ($carry, $list) use ($pattern) {
+        $latest = array_reduce($playlists->items, function ($carry, $list) use ($pattern) {
             $matches = [];
 
             if (preg_match($pattern, $list->name, $matches) === 1) {
@@ -56,7 +56,10 @@ class UpdateAction
             playlist_id = :playlist_id'
         );
 
-        $tracks = $this->api->getUserPlaylistTracks($playlist->owner->id, $playlist->id)->items;
+        $tracks = $this->api->getUserPlaylistTracks(
+            $latest['list']->owner->id,
+            $latest['list']->id
+        )->items;
 
         foreach ($tracks as $track) {
             $trackStatement->execute([
@@ -64,7 +67,7 @@ class UpdateAction
             'name' => $track->track->name,
             'album' => $track->track->album->name,
             'added_by' => $track->added_by->id,
-            'playlist_id' => $playlist->id,
+            'playlist_id' => $latest['list']->id,
             ]);
         }
 
