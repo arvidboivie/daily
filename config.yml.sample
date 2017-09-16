@@ -7,7 +7,7 @@ database:
 
 jobby:
     debug: false
-    log: 'logs/command.log'
+    log: '../logs/command.log'
     schedule: '*/10 * * * *'
 
 spotify:

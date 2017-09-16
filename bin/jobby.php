@@ -1,12 +1,13 @@
+#!/usr/bin/env php
 <?php
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use DailyDouble\Command\UpdateCommand;
 use Noodlehaus\Config;
 
 $jobby = new \Jobby\Jobby();
-$config = Config::load('config.yml');
+$config = Config::load('../config.yml');
 $jobbyConfig = $config->get('jobby');
 
 $jobby->add('UpdateCommand', array(
