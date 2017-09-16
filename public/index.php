@@ -62,8 +62,8 @@ $app->add(function ($req, $res, $next) {
 
 $app->get('/search/{term}', SearchController::class . ':search');
 
-$app->get('/update/', UpdateController::class . ':update');
+$app->get('/update', UpdateController::class . ':update');
 
-$app->get('/update/latest/', UpdateController::class . ':updateLatest');
+$app->get('/update/latest', UpdateController::class . ':updateLatest');
 
 $app->run();
