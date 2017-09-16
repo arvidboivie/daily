@@ -7,14 +7,15 @@ use Noodlehaus\Config;
 
 $jobby = new \Jobby\Jobby();
 $config = Config::load('config.yml');
+$jobbyConfig = $config->get('jobby');
 
 $jobby->add('UpdateCommand', array(
     'closure' => function () use ($config) {
         return (new UpdateCommand($config))->run();
     },
-    'schedule' => '*/10 * * * *',
-    'output' => 'logs/command.log',
-    'debug' => true,
+    'schedule' => $jobbyConfig['schedule'],
+    'output' => $jobbyConfig['log'],
+    'debug' => $jobbyConfig['debug'],
     'enabled' => true,
 ));
 

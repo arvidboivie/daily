@@ -5,9 +5,14 @@ database:
     password: password
     charset: utf8
 
+jobby:
+    debug: false
+    log: 'logs/command.log'
+    schedule: '*/10 * * * *'
+
 spotify:
     client_id: a1b2c3d4
-    client_secret: a1b2c3d4
-    redirect_URI: https://www.example.com/auth.php
     playlist_pattern: /regexp/
     playlist_user: username
+
+vault_url: https://www.example.com/vault/
