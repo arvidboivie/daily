@@ -30,7 +30,7 @@ class UpdateCommand
             $vault_url.$spotify['client_id'].'/'.$spotify['playlist_user']
         );
 
-        $response = json_decode($request->getBody());
+        $response = json_decode($request->getBody(), true);
 
         if (empty($response['error']) === false) {
             fwrite(STDOUT, $response['error']);
