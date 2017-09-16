@@ -1,8 +1,8 @@
 <?php
 
-namespace DailyDouble\Controller;
+namespace DailyDouble\Action;
 
-class Search
+class SearchAction
 {
     /**
      * @var \PDO

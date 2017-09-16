@@ -22,7 +22,7 @@
         "monolog/monolog": "^1.23",
         "symfony/yaml": "^3.3",
         "hellogerard/jobby": "^3.3",
-        "boivie/spotify-api-helper": "dev-master"
+        "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-4": {

@@ -2,10 +2,11 @@
 
 namespace DailyDouble\Command;
 
-use DailyDouble\Controller\Update;
-use Boivie\SpotifyApiHelper\SpotifyApiHelper;
-use Noodlehaus\Config;
 use \PDO;
+use DailyDouble\Controller\Update;
+use GuzzleHttp;
+use Noodlehaus\Config;
+use SpotifyWebAPI\SpotifyWebAPI;
 
 class UpdateCommand
 {
@@ -19,27 +20,42 @@ class UpdateCommand
 
     public function run()
     {
-        $dbConfig = $this->config->get('database');
-
-        $dsn = "mysql:host=".$dbConfig['host'].";dbname=".$dbConfig['name'].";charset=".$dbConfig['charset'];
-
-        $db = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
+        $vault_url = $this->config->get('vault_url');
         $spotify = $this->config->get('spotify');
 
-        $api = (new SpotifyApiHelper(
-            $db,
-            $spotify['client_id'],
-            $spotify['client_secret'],
-            $spotify['redirect_URI']
-        ))->getApiWrapper();
+        $client = new GuzzleHttp\Client();
 
-        $update = new Update($api, $db);
+        $request = $client->request(
+            'GET',
+            $vault_url.$spotify['client_id'].'/'.$spotify['playlist_user']
+        );
+
+        $response = json_decode($request->getBody());
+
+        if (empty($response['error']) === false) {
+            fwrite(STDOUT, $response['error']);
+            return false;
+        }
+
+        $api = new SpotifyWebAPI();
+
+        $api->setAccessToken($response['token']);
+
+        $update = new Update($api, $this->getDB($config));
 
         $status = $update->updatePlaylists($spotify['playlist_user'], $spotify['playlist_pattern']);
 
         return $status;
+    }
+
+    private function getDB($config)
+    {
+        $dbConfig = $this->config->get('database');
+        $dsn = "mysql:host=".$dbConfig['host'].";dbname=".$dbConfig['name'].";charset=".$dbConfig['charset'];
+        $db = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+        return $db;
     }
 }

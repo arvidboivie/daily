@@ -1,10 +1,10 @@
 <?php
 
-namespace DailyDouble\Controller;
+namespace DailyDouble\Action;
 
 use SpotifyWebAPI\SpotifyWebAPI;
 
-class Update
+class UpdateAction
 {
     /**
      * @var SpotifyWebAPI

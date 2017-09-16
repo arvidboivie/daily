@@ -4,8 +4,7 @@ require '../vendor/autoload.php';
 
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
-use Boivie\SpotifyApiHelper\SpotifyApiHelper;
-use DailyDouble\Controller\Search;
+use DailyDouble\Controller\SearchController;
 use DailyDouble\Controller\UpdateController;
 use GuzzleHttp;
 use Noodlehaus\Config;
@@ -61,50 +60,10 @@ $app->add(function ($req, $res, $next) {
             );
 });
 
-$app->get('/search/{term}', function (Request $request, Response $response) {
-    if (empty($request->getAttribute('term')) === true) {
-        $response->write(json_encode(false));
-
-        return $response;
-    }
-
-    $search = new Search($this->db);
-
-    $results = $search->getSongs($request->getAttribute('term'));
-
-    $response->write(json_encode($results));
-
-    return $response;
-});
+$app->get('/search/{term}', SearchController::class . ':search');
 
 $app->get('/update/', UpdateController::class . ':update');
 
-$app->get('/update/latest/', function (Request $request, Response $response) {
-    $spotify = $this->get('settings')['spotify'];
-
-    $api = (new SpotifyApiHelper(
-        $this->db,
-        $spotify['client_id'],
-        $spotify['client_secret'],
-        $spotify['redirect_URI']
-    ))->getApiWrapper();
-
-    $update = new Update($api, $this->db);
-
-    $status = $update->updateLatestPlaylist(
-        $spotify['playlist_user'],
-        $spotify['playlist_pattern']
-    );
-
-    if ($status !== true) {
-        $response->getBody()->write('Something went wrong');
-
-        return $response;
-    }
-
-    $response->getBody()->write('Playlists updated');
-
-    return $response;
-});
+$app->get('/update/latest/', UpdateController::class . ':updateLatest');
 
 $app->run();
