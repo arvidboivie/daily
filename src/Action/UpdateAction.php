@@ -22,7 +22,7 @@ class UpdateAction
         $this->db = $db;
     }
 
-    public function updateLatestPlaylist($user, $pattern)
+    public function getTracksFromCurrentPlaylist($user, $pattern)
     {
         $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
 
@@ -33,7 +33,7 @@ class UpdateAction
                 if ((int)$matches[1] > $carry['number']) {
                     return [
                         'number' => (int)$matches[1],
-                        'name' => $list->name,
+                        'list' => $list,
                     ];
                 }
 
@@ -43,13 +43,35 @@ class UpdateAction
             return $carry;
         }, [
             'number' => 0,
-            'name' => null,
+            'list' => null,
         ]);
 
-        print_r($playlist);
+        $trackStatement = $this->db->prepare(
+            'INSERT INTO tracks(id, name, album, added_by, playlist_id)
+            VALUES(:id, :name, :album, :added_by, :playlist_id)
+            ON DUPLICATE KEY UPDATE
+            name= :name,
+            album= :album,
+            added_by = :added_by,
+            playlist_id = :playlist_id'
+        );
+
+        $tracks = $this->api->getUserPlaylistTracks($playlist->owner->id, $playlist->id)->items;
+
+        foreach ($tracks as $track) {
+            $trackStatement->execute([
+            'id' => $track->track->id,
+            'name' => $track->track->name,
+            'album' => $track->track->album->name,
+            'added_by' => $track->added_by->id,
+            'playlist_id' => $playlist->id,
+            ]);
+        }
+
+        return true;
     }
 
-    public function updatePlaylists($user, $pattern)
+    public function getAllTracks($user, $pattern)
     {
         $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
 

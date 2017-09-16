@@ -43,7 +43,10 @@ class UpdateCommand
 
         $update = new Update($api, $this->getDB($config));
 
-        $status = $update->updatePlaylists($spotify['playlist_user'], $spotify['playlist_pattern']);
+        $status = $update->getTracksFromCurrentPlaylist(
+            $spotify['playlist_user'],
+            $spotify['playlist_pattern']
+        );
 
         return $status;
     }

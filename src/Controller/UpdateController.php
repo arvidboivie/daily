@@ -18,7 +18,7 @@ class UpdateController extends BaseController
 
         $spotify = $this->container->settings['spotify'];
 
-        $status = $update->updatePlaylists(
+        $status = $update->getAllTracks(
             $spotify['playlist_user'],
             $spotify['playlist_pattern']
         );
@@ -44,7 +44,7 @@ class UpdateController extends BaseController
 
         $spotify = $this->container->settings['spotify'];
 
-        $status = $update->updateLatestPlaylist(
+        $status = $update->getTracksFromCurrentPlaylist(
             $spotify['playlist_user'],
             $spotify['playlist_pattern']
         );
