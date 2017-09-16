@@ -8,13 +8,7 @@
             "email": "arvid.boivie@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:arvidboivie/spotify-api-helper.git"
-        }
-    ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable" : true,
     "require": {
         "hassankhan/config": "^0.10.0",
