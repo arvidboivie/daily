@@ -3,7 +3,7 @@
 namespace Boivie\Daily\Command;
 
 use \PDO;
-use Boivie\Daily\Controller\Update;
+use Boivie\Daily\Controller\UpdateController;
 use GuzzleHttp;
 use Noodlehaus\Config;
 use SpotifyWebAPI\SpotifyWebAPI;
@@ -41,7 +41,7 @@ class UpdateCommand
 
         $api->setAccessToken($response['token']);
 
-        $update = new Update($api, $this->getDB($config));
+        $update = new UpdateController($api, $this->getDB($config));
 
         $status = $update->getTracksFromCurrentPlaylist(
             $spotify['playlist_user'],
