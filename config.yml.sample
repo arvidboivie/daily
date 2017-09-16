@@ -8,7 +8,7 @@ database:
 jobby:
     debug: false
     log: '../logs/command.log'
-    schedule: '*/10 * * * *'
+    schedule: '* * * * *'
 
 spotify:
     client_id: a1b2c3d4
