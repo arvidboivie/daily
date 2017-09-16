@@ -1,15 +1,16 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
-use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use \Psr\Http\Message\ServerRequestInterface as Request;
 use Boivie\SpotifyApiHelper\SpotifyApiHelper;
 use DailyDouble\Controller\Search;
-use DailyDouble\Controller\Update;
+use DailyDouble\Controller\UpdateController;
+use GuzzleHttp;
 use Noodlehaus\Config;
 
-$config = Config::load('config.yml');
+$config = Config::load('../config.yml');
 
 $slimConfig = [
     'displayErrorDetails' => true,
@@ -23,7 +24,7 @@ $container = $app->getContainer();
 
 $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('logger');
-    $file_handler = new \Monolog\Handler\StreamHandler('logs/app.log');
+    $file_handler = new \Monolog\Handler\StreamHandler('../logs/app.log');
     $logger->pushHandler($file_handler);
     return $logger;
 };
@@ -76,33 +77,7 @@ $app->get('/search/{term}', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->get('/update', function (Request $request, Response $response) {
-    $spotify = $this->get('settings')['spotify'];
-
-    $api = (new SpotifyApiHelper(
-        $this->db,
-        $spotify['client_id'],
-        $spotify['client_secret'],
-        $spotify['redirect_URI']
-    ))->getApiWrapper();
-
-    $update = new Update($api, $this->db);
-
-    $status = $update->updatePlaylists(
-        $spotify['playlist_user'],
-        $spotify['playlist_pattern']
-    );
-
-    if ($status !== true) {
-        $response->getBody()->write('Something went wrong');
-
-        return $response;
-    }
-
-    $response->getBody()->write('Playlists updated');
-
-    return $response;
-});
+$app->get('/update/', UpdateController::class . ':update');
 
 $app->get('/update/latest/', function (Request $request, Response $response) {
     $spotify = $this->get('settings')['spotify'];
@@ -128,34 +103,6 @@ $app->get('/update/latest/', function (Request $request, Response $response) {
     }
 
     $response->getBody()->write('Playlists updated');
-
-    return $response;
-});
-
-$app->get('/spotify/auth/', function (Request $request, Response $response) {
-    $spotify = $this->get('settings')['spotify'];
-
-    $apiHelper = new SpotifyApiHelper(
-        $this->db,
-        $spotify['client_id'],
-        $spotify['client_secret'],
-        $spotify['redirect_URI']
-    );
-
-    $code = $request->getQueryParams()['code'];
-
-    if (empty($code) === true) {
-        $authorizeUrl = $apiHelper->getAuthorizeUrl([
-            'playlist-read-private',
-            'playlist-read-collaborative',
-        ]);
-
-        return $response->withRedirect($authorizeUrl, 302);
-    }
-
-    $status = $apiHelper->getAccessToken($code);
-
-    $response->getBody()->write('Auth successful');
 
     return $response;
 });
