@@ -17,11 +17,16 @@
         "symfony/yaml": "^3.3",
         "hellogerard/jobby": "^3.3",
         "guzzlehttp/guzzle": "^6.3",
-        "jwilsson/spotify-web-api-php": "^2.0"
+        "jwilsson/spotify-web-api-php": "^2.0",
+        "nesbot/carbon": "^1.22"
     },
     "autoload": {
         "psr-4": {
             "Boivie\\Daily\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.8.5",
+        "friendsofphp/php-cs-fixer": "^2.6"
     }
 }

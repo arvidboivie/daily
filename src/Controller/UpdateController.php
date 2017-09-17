@@ -14,40 +14,15 @@ class UpdateController extends BaseController
 
         $api->setAccessToken($this->getToken());
 
-        $update = new UpdateAction($api, $this->container->db);
-
-        $spotify = $this->container->settings['spotify'];
-
-        $status = $update->getAllTracks(
-            $spotify['playlist_user'],
-            $spotify['playlist_pattern']
+        $updateAction = new UpdateAction(
+            $this->container->settings,
+            [
+                'api' => $api,
+                'db' => $this->container->db
+            ]
         );
 
-        if ($status !== true) {
-            $response->getBody()->write('Something went wrong');
-
-            return $response;
-        }
-
-        $response->getBody()->write('Playlists updated');
-
-        return $response;
-    }
-
-    public function updateLatest($request, $response, $args)
-    {
-        $api = new SpotifyWebAPI();
-
-        $api->setAccessToken($this->getToken());
-
-        $update = new UpdateAction($api, $this->container->db);
-
-        $spotify = $this->container->settings['spotify'];
-
-        $status = $update->getTracksFromCurrentPlaylist(
-            $spotify['playlist_user'],
-            $spotify['playlist_pattern']
-        );
+        $status = $updateAction->getAllTracks();
 
         if ($status !== true) {
             $response->getBody()->write('Something went wrong');

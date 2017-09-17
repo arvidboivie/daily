@@ -2,49 +2,18 @@
 
 namespace Boivie\Daily\Action;
 
-use SpotifyWebAPI\SpotifyWebAPI;
-
-class UpdateAction
+class UpdateAction extends BaseAction
 {
-    /**
-     * @var SpotifyWebAPI
-     */
-    private $api;
-
-    /**
-     * @var PDO
-     */
-    private $db;
-
-    public function __construct(SpotifyWebAPI $api, \PDO $db)
+    public function __construct($config, $addons = null)
     {
-        $this->api = $api;
-        $this->db = $db;
+        parent::__construct($config);
+
+        $this->addAPI($addons['api']);
+        $this->addDB($addons['db']);
     }
-
-    public function getTracksFromCurrentPlaylist($user, $pattern)
+    public function getTracksFromCurrentPlaylist()
     {
-        $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
-
-        $latest = array_reduce($playlists->items, function ($carry, $list) use ($pattern) {
-            $matches = [];
-
-            if (preg_match($pattern, $list->name, $matches) === 1) {
-                if ((int)$matches[1] > $carry['number']) {
-                    return [
-                        'number' => (int)$matches[1],
-                        'list' => $list,
-                    ];
-                }
-
-                return $carry;
-            }
-
-            return $carry;
-        }, [
-            'number' => 0,
-            'list' => null,
-        ]);
+        $latest = $this->getLatestPlaylist();
 
         $trackStatement = $this->db->prepare(
             'INSERT INTO tracks(id, name, album, added_by, playlist_id)
@@ -74,9 +43,16 @@ class UpdateAction
         return true;
     }
 
-    public function getAllTracks($user, $pattern)
+    public function getAllTracks()
     {
-        $playlists = $this->api->getUserPlaylists($user, ['limit' => 50]);
+        $spotifyConfig = $this->config->get('spotify');
+
+        $playlists = $this->api->getUserPlaylists(
+            $spotifyConfig['playlist_user'],
+            ['limit' => 50]
+        );
+
+        $pattern = $spotifyConfig['playlist_pattern'];
 
         $playlists = array_filter($playlists->items, function ($list) use ($pattern) {
             if (preg_match($pattern, $list->name) === 1) {

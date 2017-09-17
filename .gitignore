@@ -1,2 +1,3 @@
 config.yml
 /vendor/
+.php_cs.cache
