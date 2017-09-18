@@ -1,7 +1,15 @@
 <?php
 
-return PhpCsFixer\Config::create()->setFinder(
+$config = PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        'yoda_style' => false
+    ])
+    ->setFinder(
         PhpCsFixer\Finder::create()
             ->exclude('vendor')
             ->in(__DIR__)
     );
+
+return $config;
