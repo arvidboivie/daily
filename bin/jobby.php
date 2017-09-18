@@ -3,6 +3,7 @@
 
 require_once '../vendor/autoload.php';
 
+use Boivie\Daily\Command\CreatePlaylistCommand;
 use Boivie\Daily\Command\UpdateCommand;
 use Noodlehaus\Config;
 
@@ -14,7 +15,17 @@ $jobby->add('UpdateCommand', array(
     'closure' => function () use ($config) {
         return (new UpdateCommand($config))->run();
     },
-    'schedule' => $jobbyConfig['schedule'],
+    'schedule' => $jobbyConfig['schedule']['update'],
+    'output' => $jobbyConfig['log'],
+    'debug' => $jobbyConfig['debug'],
+    'enabled' => true,
+));
+
+$jobby->add('CreatePlaylistCommand', array(
+    'closure' => function () use ($config) {
+        return (new CreatePlaylistCommand($config))->run();
+    },
+    'schedule' => $jobbyConfig['schedule']['new_playlist'],
     'output' => $jobbyConfig['log'],
     'debug' => $jobbyConfig['debug'],
     'enabled' => true,

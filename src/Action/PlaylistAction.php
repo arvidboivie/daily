@@ -44,5 +44,6 @@ class PlaylistAction extends BaseAction
     public function subscribeUserToPlaylist($user, $playlistID)
     {
         // TODO:
+        return true;
     }
 }
