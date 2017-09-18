@@ -2,11 +2,8 @@
 
 require '../vendor/autoload.php';
 
-use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Http\Message\ServerRequestInterface as Request;
 use Boivie\Daily\Controller\SearchController;
 use Boivie\Daily\Controller\UpdateController;
-use GuzzleHttp;
 use Noodlehaus\Config;
 
 $config = Config::load('../config.yml');
@@ -25,16 +22,18 @@ $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('logger');
     $file_handler = new \Monolog\Handler\StreamHandler('../logs/app.log');
     $logger->pushHandler($file_handler);
+
     return $logger;
 };
 $container['db'] = function ($c) {
     $db = $c['settings']['database'];
 
-    $dsn = "mysql:host=".$db['host'].";dbname=".$db['name'].";charset=".$db['charset'];
+    $dsn = 'mysql:host='.$db['host'].';dbname='.$db['name'].';charset='.$db['charset'];
 
     $pdo = new PDO($dsn, $db['user'], $db['password']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
     return $pdo;
 };
 
@@ -45,6 +44,7 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
+
     return $response
             ->withHeader(
                 'Access-Control-Allow-Origin',
@@ -60,8 +60,8 @@ $app->add(function ($req, $res, $next) {
             );
 });
 
-$app->get('/search/{term}', SearchController::class . ':search');
+$app->get('/search/{term}', SearchController::class.':search');
 
-$app->get('/update', UpdateController::class . ':update');
+$app->get('/update', UpdateController::class.':update');
 
 $app->run();

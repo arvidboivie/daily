@@ -8,11 +8,15 @@ database:
 jobby:
     debug: false
     log: '../logs/command.log'
-    schedule: '* * * * *'
+    schedule:
+        job_name: '* * * * *'
+        job_name: '* * * * *'
 
 spotify:
     client_id: a1b2c3d4
     playlist_pattern: /regexp/
     playlist_user: username
+    collaborative_user: second_username
+    new_playlist_pattern: <sprinf string>
 
 vault_url: https://www.example.com/vault/

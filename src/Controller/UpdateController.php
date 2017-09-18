@@ -3,7 +3,6 @@
 namespace Boivie\Daily\Controller;
 
 use Boivie\Daily\Action\UpdateAction;
-use Interop\Container\ContainerInterface;
 use SpotifyWebAPI\SpotifyWebAPI;
 
 class UpdateController extends BaseController
@@ -18,7 +17,7 @@ class UpdateController extends BaseController
             $this->container->settings,
             [
                 'api' => $api,
-                'db' => $this->container->db
+                'db' => $this->container->db,
             ]
         );
 
