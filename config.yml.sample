@@ -9,7 +9,7 @@ jobby:
     debug: false
     log: '../logs/command.log'
     schedule:
-        update: '*/15 * * * *'
+        update: '* * * * *'
         new_playlist: '0 0 1 * *'
 
 spotify:
