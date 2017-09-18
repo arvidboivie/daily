@@ -3,6 +3,7 @@
 namespace Boivie\Daily\Action;
 
 use Carbon\Carbon;
+use SpotifyWebAPI\SpotifyWebAPI;
 
 class PlaylistAction extends BaseAction
 {
@@ -41,9 +42,24 @@ class PlaylistAction extends BaseAction
         return $newList->id;
     }
 
-    public function subscribeUserToPlaylist($user, $playlistID)
+    public function subscribeUserToPlaylist($playlistID)
     {
-        // TODO:
+        $spotifyConfig = $this->config->get('spotify');
+
+        $api = new SpotifyWebAPI();
+
+        $api->setAccessToken(
+            $this->getAPIToken($spotifyConfig['collaborative_user'])
+        );
+
+        $api->followPlaylist(
+            $spotifyConfig['playlist_user'],
+            $playlistID,
+            [
+                'public' => false,
+            ]
+        );
+
         return true;
     }
 }

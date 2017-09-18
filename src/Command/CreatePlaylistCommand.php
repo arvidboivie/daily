@@ -12,10 +12,7 @@ class CreatePlaylistCommand extends BaseCommand
 
         $playlistID = $playlistAction->createNewPlaylist();
 
-        $status = $playlistAction->subscribeUserToPlaylist(
-            $this->config->get('spotify')['collaborative_user'],
-            $playlistID
-        );
+        $status = $playlistAction->subscribeUserToPlaylist($playlistID);
 
         return $status;
     }

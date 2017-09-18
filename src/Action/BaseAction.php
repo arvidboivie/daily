@@ -62,27 +62,10 @@ class BaseAction
                 $this->api = $api;
             }
 
-            $vault_url = $this->config->get('vault_url');
-            $spotify = $this->config->get('spotify');
-
-            $client = new GuzzleHttp\Client();
-
-            $request = $client->request(
-                'GET',
-                $vault_url.$spotify['client_id'].'/'.$spotify['playlist_user']
-            );
-
-            $response = json_decode($request->getBody(), true);
-
-            if (empty($response['error']) === false) {
-                fwrite(STDOUT, $response['error']);
-
-                return false;
-            }
-
             $this->api = new SpotifyWebAPI();
 
-            $this->api->setAccessToken($response['token']);
+            $spotify = $this->config->get('spotify');
+            $this->api->setAccessToken($this->getAPIToken($spotify['playlist_user']));
         }
     }
 
@@ -99,5 +82,28 @@ class BaseAction
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
+    }
+
+    protected function getAPIToken($user)
+    {
+        $vault_url = $this->config->get('vault_url');
+        $spotify = $this->config->get('spotify');
+
+        $client = new GuzzleHttp\Client();
+
+        $request = $client->request(
+            'GET',
+            $vault_url.$spotify['client_id'].'/'.$user
+        );
+
+        $response = json_decode($request->getBody(), true);
+
+        if (empty($response['error']) === false) {
+            fwrite(STDOUT, $response['error']);
+
+            return false;
+        }
+
+        return $response['token'];
     }
 }
