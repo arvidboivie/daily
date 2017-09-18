@@ -24,7 +24,7 @@ class PlaylistAction extends BaseAction
 
         $playlistName = sprintf(
             $spotifyConfig['new_playlist_pattern'],
-            ++$latest['number'],
+            $latest['number'],
             $now->formatLocalized('%B'),
             $now->year
         );
