@@ -11,7 +11,7 @@ $jobby = new \Jobby\Jobby();
 $config = Config::load('../config.yml');
 $jobbyConfig = $config->get('jobby');
 
-$jobby->add('UpdateCommand', array(
+$jobby->add('daily/updateLatest', array(
     'closure' => function () use ($config) {
         return (new UpdateCommand($config))->run();
     },
@@ -21,7 +21,7 @@ $jobby->add('UpdateCommand', array(
     'enabled' => true,
 ));
 
-$jobby->add('CreatePlaylistCommand', array(
+$jobby->add('daily/createPlaylist', array(
     'closure' => function () use ($config) {
         return (new CreatePlaylistCommand($config))->run();
     },
