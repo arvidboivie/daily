@@ -26,7 +26,7 @@ class BaseAction
         $spotifyConfig = $this->config->get('spotify');
 
         $playlists = $this->api->getUserPlaylists(
-            $spotifyConfig['user'],
+            $spotifyConfig['playlist_user'],
             ['limit' => 50]
         );
 
