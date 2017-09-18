@@ -2,7 +2,7 @@
 
 namespace Boivie\Daily\Action;
 
-use \PDO;
+use PDO;
 use GuzzleHttp;
 use SpotifyWebAPI\SpotifyWebAPI;
 
@@ -36,9 +36,9 @@ class BaseAction
             $matches = [];
 
             if (preg_match($pattern, $list->name, $matches) === 1) {
-                if ((int)$matches[1] > $carry['number']) {
+                if ((int) $matches[1] > $carry['number']) {
                     return [
-                        'number' => (int)$matches[1],
+                        'number' => (int) $matches[1],
                         'list' => $list,
                     ];
                 }
@@ -76,6 +76,7 @@ class BaseAction
 
             if (empty($response['error']) === false) {
                 fwrite(STDOUT, $response['error']);
+
                 return false;
             }
 
@@ -93,7 +94,7 @@ class BaseAction
             }
 
             $dbConfig = $this->config->get('database');
-            $dsn = "mysql:host=".$dbConfig['host'].";dbname=".$dbConfig['name'].";charset=".$dbConfig['charset'];
+            $dsn = 'mysql:host='.$dbConfig['host'].';dbname='.$dbConfig['name'].';charset='.$dbConfig['charset'];
             $this->db = new PDO($dsn, $dbConfig['user'], $dbConfig['password']);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

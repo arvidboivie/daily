@@ -30,7 +30,7 @@ class BaseController
 
         if (empty($response['error']) === false) {
             $this->container->logger->error($response['error']);
-            throw new \Exception("Error getting token");
+            throw new \Exception('Error getting token');
         }
 
         return $response['token'];

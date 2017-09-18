@@ -3,7 +3,6 @@
 namespace Boivie\Daily\Controller;
 
 use Boivie\Daily\Action\SearchAction;
-use Interop\Container\ContainerInterface;
 
 class SearchController extends BaseController
 {

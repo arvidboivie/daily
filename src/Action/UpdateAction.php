@@ -11,6 +11,7 @@ class UpdateAction extends BaseAction
         $this->addAPI($addons['api']);
         $this->addDB($addons['db']);
     }
+
     public function getTracksFromCurrentPlaylist()
     {
         $latest = $this->getLatestPlaylist();
