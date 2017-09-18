@@ -1,0 +1,46 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    ascii:
+        succeeded: ~
+        failed: ~
+    tasks:
+        phpcsfixer2:
+            allow_risky: false
+            rules:
+                - '@@PSR1'
+                - '@@PSR2'
+                - '@@Symfony'
+                - '-yoda_style'
+            using_cache: true
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
+
+        phpcpd:
+            directory: '.'
+            exclude: ['vendor']
+            names_exclude: []
+            fuzzy: false
+            min_lines: 5
+            min_tokens: 70
+            triggered_by: ['php']
+
+        phpstan:
+            autoload_file: ~
+            configuration: ~
+            level: 7
+            triggered_by: ['php']
+
+        phpmnd:
+            directory: .
+            exclude: []
+            exclude_name: []
+            exclude_path: []
+            extensions: []
+            hint: false
+            ignore_numbers: []
+            ignore_strings: []
+            strings: false
+            triggered_by: ['php']
