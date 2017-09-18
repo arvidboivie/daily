@@ -9,8 +9,8 @@ jobby:
     debug: false
     log: '../logs/command.log'
     schedule:
-        job_name: '* * * * *'
-        job_name: '* * * * *'
+        update: '*/15 * * * *'
+        new_playlist: '0 0 1 * *'
 
 spotify:
     client_id: a1b2c3d4
