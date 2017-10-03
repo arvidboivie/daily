@@ -31,6 +31,20 @@ class UpdateAction extends BaseAction
             $latest['list']->id
         )->items;
 
+        $playlistStatement = $this->db->prepare(
+            'INSERT INTO playlists(id, name, creator)
+            VALUES(:id, :name, :creator)
+            ON DUPLICATE KEY UPDATE
+            name= :name,
+            creator= :creator'
+        );
+
+        $playlistStatement->execute([
+            'id' => $latest['list']->id,
+            'name' => $latest['list']->name,
+            'creator' => $latest['list']->owner->id,
+        ]);
+
         foreach ($tracks as $track) {
             $trackStatement->execute([
             'id' => $track->track->id,
