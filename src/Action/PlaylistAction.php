@@ -20,13 +20,17 @@ class PlaylistAction extends BaseAction
 
         $latest = $this->getLatestPlaylist();
 
-        setlocale(LC_TIME, 'sv-SE');
+        /*
+         * This whole locale thing can be a bit wonky depending on host settings.
+         * 'Swedish' with ucfirst on the month string works for me.
+         */
+        setlocale(LC_TIME, 'Swedish');
         $now = Carbon::now();
 
         $playlistName = sprintf(
             $spotifyConfig['new_playlist_pattern'],
             ++$latest['number'],
-            $now->formatLocalized('%B'),
+            ucfirst($now->formatLocalized('%B')),
             $now->year
         );
 
