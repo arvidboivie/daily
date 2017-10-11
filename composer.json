@@ -30,6 +30,7 @@
         "friendsofphp/php-cs-fixer": "^2.6",
         "phpstan/phpstan": "^0.8.5",
         "sebastian/phpcpd": "^3.0",
-        "povils/phpmnd": "^1.1"
+        "povils/phpmnd": "^1.1",
+        "bmitch/churn-php": "^0.3.1"
     }
 }
