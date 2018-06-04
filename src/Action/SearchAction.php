@@ -21,6 +21,7 @@ class SearchAction
             tracks.name AS label,
             tracks.playlist_id AS playlist,
             playlists.creator AS creator
+            playlists.name AS playlist_name
             FROM tracks
             LEFT JOIN playlists ON playlists.id = tracks.playlist_id
             WHERE tracks.name LIKE :search'
